@@ -1,4 +1,0 @@
---patch-module
-eu.kgorecki.rpgame.engine=_
---add-reads
-eu.kgorecki.rpgame.engine=ALL-UNNAMED
