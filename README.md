@@ -1,6 +1,6 @@
 ##### Requirements
  * installed JDK 12
- * JAVA_HOME env variable set to dir when JDK 12 is installed
+ * JAVA_HOME environment variable set to directory where JDK 12 is installed
  * internet connection do maven central to download needed libs
  
 ##### Build
