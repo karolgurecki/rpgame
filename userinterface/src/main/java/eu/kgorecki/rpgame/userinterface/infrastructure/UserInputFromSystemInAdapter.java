@@ -2,19 +2,13 @@ package eu.kgorecki.rpgame.userinterface.infrastructure;
 
 import eu.kgorecki.rpgame.userinterface.application.UserInputPort;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
-public class UserInputAdapter implements UserInputPort {
-
-    private final Scanner scanner;
-
-    public UserInputAdapter(InputStream inputStream) {
-        this.scanner = new Scanner(inputStream);
-    }
-
+public class UserInputFromSystemInAdapter implements UserInputPort {
     @Override
     public String getInputFromUser() {
+        final Scanner scanner = new Scanner(System.in);
+
         return scanner.nextLine();
     }
 }
