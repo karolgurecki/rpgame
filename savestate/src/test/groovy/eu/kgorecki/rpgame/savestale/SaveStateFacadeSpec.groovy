@@ -3,7 +3,7 @@ package eu.kgorecki.rpgame.savestale
 import eu.kgorecki.rpgame.savestale.infrastructure.CannotLoadGameStateException
 import eu.kgorecki.rpgame.savestale.infrastructure.CannotSaveGameStateException
 import eu.kgorecki.rpgame.savestale.infrastructure.GameStateNotExistsException
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFactory
+import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory
 import spock.lang.Specification
 
 class SaveStateFacadeSpec extends Specification {
@@ -12,7 +12,7 @@ class SaveStateFacadeSpec extends Specification {
         given:
             def objectAttemptedToSave
             
-            def sut = SaveStateFactory.createFacade(null, { object, fileName ->
+            def sut = SaveStateFacadeFactory.createFacade(null, { object, fileName ->
                 objectAttemptedToSave = object
             }, null)
         
@@ -25,7 +25,7 @@ class SaveStateFacadeSpec extends Specification {
     
     def "should not thrown any exceptions when save state was not be able to be saved"() {
         given:
-            def sut = SaveStateFactory.createFacade(UserInterfaceFactory.createFacade(), { object, fileName ->
+            def sut = SaveStateFacadeFactory.createFacade(UserInterfaceFacadeFactory.createFacade(), { object, fileName ->
                 throw new CannotSaveGameStateException()
             }, null)
         
@@ -39,7 +39,7 @@ class SaveStateFacadeSpec extends Specification {
     def "should load save stale based on class of the savved object"() {
         given:
             def classOfObjectAttemptedTobeLoad
-            def sut = SaveStateFactory.createFacade(UserInterfaceFactory.createFacade(), null, { name, clazz ->
+            def sut = SaveStateFacadeFactory.createFacade(UserInterfaceFacadeFactory.createFacade(), null, { name, clazz ->
                 classOfObjectAttemptedTobeLoad = clazz
                 Optional.of('test')
             })
@@ -54,7 +54,7 @@ class SaveStateFacadeSpec extends Specification {
     
     def "should return empty Optional when save state was not be able to be load"() {
         given:
-            def sut = SaveStateFactory.createFacade(UserInterfaceFactory.createFacade(), null, { name, clazz -> throw new CannotLoadGameStateException() })
+            def sut = SaveStateFacadeFactory.createFacade(UserInterfaceFacadeFactory.createFacade(), null, { name, clazz -> throw new CannotLoadGameStateException() })
         
         expect:
             sut.load(String) == Optional.empty()
@@ -62,7 +62,7 @@ class SaveStateFacadeSpec extends Specification {
     
     def "should return empty Optional when save state not exists"() {
         given:
-            def sut = SaveStateFactory.createFacade(UserInterfaceFactory.createFacade(), null, { name, clazz -> throw new GameStateNotExistsException() })
+            def sut = SaveStateFacadeFactory.createFacade(UserInterfaceFacadeFactory.createFacade(), null, { name, clazz -> throw new GameStateNotExistsException() })
         
         expect:
             sut.load(String) == Optional.empty()

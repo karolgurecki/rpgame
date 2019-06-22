@@ -2,7 +2,7 @@ package eu.kgorecki.rpgame.userinterface;
 
 import eu.kgorecki.rpgame.userinterface.application.UserInteractionService;
 
-public final class UserInterfaceFacade {
+public class UserInterfaceFacade {
     private final UserInteractionService service;
 
     UserInterfaceFacade(UserInteractionService service) {
@@ -15,5 +15,9 @@ public final class UserInterfaceFacade {
 
     public String getUserInput(){
         return service.getInputFromUser();
+    }
+
+    public String getUserInputWithTextInTheSameLine(String text) {
+        return service.getUserInputWithTextInTheSameLine(text);
     }
 }

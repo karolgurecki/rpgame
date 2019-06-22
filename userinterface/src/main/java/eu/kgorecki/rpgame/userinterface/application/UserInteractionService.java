@@ -17,4 +17,8 @@ public class UserInteractionService {
     public String getInputFromUser() {
         return userInputPort.getInputFromUser();
     }
+
+    public String getUserInputWithTextInTheSameLine(String text) {
+        return userInputPort.getUserInputWithTextInTheSameLine(text);
+    }
 }

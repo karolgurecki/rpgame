@@ -1,6 +1,7 @@
 package eu.kgorecki.rpgame.userinterface.application;
 
-@FunctionalInterface
 public interface UserInputPort {
     String getInputFromUser();
+
+    String getUserInputWithTextInTheSameLine(String text);
 }

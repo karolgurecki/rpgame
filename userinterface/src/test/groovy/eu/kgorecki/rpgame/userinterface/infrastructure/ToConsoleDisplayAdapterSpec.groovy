@@ -1,6 +1,6 @@
 package eu.kgorecki.rpgame.userinterface.infrastructure
 
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFactory
+
 import spock.lang.Specification
 import spock.lang.Unroll
 

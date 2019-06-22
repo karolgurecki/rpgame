@@ -6,11 +6,11 @@ import eu.kgorecki.rpgame.userinterface.application.UserInteractionService;
 import eu.kgorecki.rpgame.userinterface.infrastructure.ToConsoleDisplayAdapter;
 import eu.kgorecki.rpgame.userinterface.application.UserInputPort;
 
-public class UserInterfaceFactory {
+public class UserInterfaceFacadeFactory {
 
     private static UserInterfaceFacade facadeInstance;
 
-    private UserInterfaceFactory() {
+    private UserInterfaceFacadeFactory() {
     }
 
     public static UserInterfaceFacade createFacade() {

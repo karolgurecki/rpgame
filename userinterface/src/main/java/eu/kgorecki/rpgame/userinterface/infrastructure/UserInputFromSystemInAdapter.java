@@ -11,4 +11,11 @@ public class UserInputFromSystemInAdapter implements UserInputPort {
 
         return scanner.nextLine();
     }
+
+    @Override
+    public String getUserInputWithTextInTheSameLine(String text) {
+        System.out.print(text);
+
+        return getInputFromUser();
+    }
 }

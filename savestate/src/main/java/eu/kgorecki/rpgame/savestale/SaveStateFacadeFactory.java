@@ -6,18 +6,18 @@ import eu.kgorecki.rpgame.savestale.application.GameStateSaverPort;
 import eu.kgorecki.rpgame.savestale.infrastructure.GameStateLoaderFromFileAdapter;
 import eu.kgorecki.rpgame.savestale.infrastructure.GameStateSaverToFileAdapter;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFactory;
+import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory;
 
-public class SaveStateFactory {
+public class SaveStateFacadeFactory {
 
     private static SaveStateFacade instace;
 
-    private SaveStateFactory() {
+    private SaveStateFacadeFactory() {
     }
 
     public static SaveStateFacade createFacade() {
         if (instace == null) {
-            instace = createFacade(UserInterfaceFactory.createFacade(), new GameStateSaverToFileAdapter(),
+            instace = createFacade(UserInterfaceFacadeFactory.createFacade(), new GameStateSaverToFileAdapter(),
                     new GameStateLoaderFromFileAdapter());
         }
 
