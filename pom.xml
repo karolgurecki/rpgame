@@ -15,6 +15,7 @@
         <module>world</module>
         <module>savestate</module>
         <module>userinterface</module>
+        <module>items</module>
     </modules>
 
     <properties>
