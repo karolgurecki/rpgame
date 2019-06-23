@@ -3,6 +3,9 @@ package eu.kgorecki.rpgame.character.domain;
 class UserMassages {
     private UserMassages() {    }
 
+
+    static final String CHARACTER_SAVED = "Character saved.";
+    static final String NO_CHARACTER_CANNOT_SAVE = "No characters loaded. Cannot save characters.";
     static final String ENTER_NAME = "Enter name: ";
     static final String ENTER_SEX = "Enter sex: ";
     static final String ENTER_SKIN_COLOR = "Enter race: ";

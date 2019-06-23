@@ -1,6 +1,7 @@
 package eu.kgorecki.rpgame.character
 
 import eu.kgorecki.rpgame.character.domain.Character
+import eu.kgorecki.rpgame.character.domain.SavePort
 import eu.kgorecki.rpgame.character.domain.UserMassages
 import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus
 import eu.kgorecki.rpgame.character.infrastructure.SingleCharacterRepositoryAdapter
@@ -8,14 +9,13 @@ import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade
 import spock.lang.Specification
 
 class CharacterFacadeSpec extends Specification {
+    def mockedUserInterfaceFacade = Mock(UserInterfaceFacade)
+    def repositoryAdapter = new SingleCharacterRepositoryAdapter()
+    def mockedSavePort = Mock(SavePort)
+    
+    def sut = CharacterFacadeFactory.createFacade(repositoryAdapter, mockedUserInterfaceFacade, mockedSavePort)
     
     def "should create character if one not exists"() {
-        given:
-            def mockedUserInterfaceFacade = Mock(UserInterfaceFacade)
-            def repositoryAdapter = new SingleCharacterRepositoryAdapter()
-            
-            def sut = CharacterFacadeFactory.createFacade(repositoryAdapter, mockedUserInterfaceFacade)
-        
         when:
             def resultStatus = sut.createCharacter()
         
@@ -37,12 +37,7 @@ class CharacterFacadeSpec extends Specification {
     
     def "should return already create status when character already exists"() {
         given:
-            def mockedUserInterfaceFacade = Mock(UserInterfaceFacade)
-            def repositoryAdapter = new SingleCharacterRepositoryAdapter()
-            
             repositoryAdapter.character = new Character('', '', '', '')
-            
-            def sut = CharacterFacadeFactory.createFacade(repositoryAdapter, mockedUserInterfaceFacade)
         
         when:
             def resultStatus = sut.createCharacter()
@@ -54,4 +49,31 @@ class CharacterFacadeSpec extends Specification {
             repositoryAdapter.character = null
     }
     
+    def "should save character if it is loaded"() {
+        
+        given:
+            def character = new Character('', '', '', '')
+            repositoryAdapter.character = character
+        
+        when:
+            sut.saveCharacters()
+        
+        then:
+            1 * mockedSavePort.save(character)
+        
+        cleanup:
+            repositoryAdapter.character = null
+    }
+    
+    def "should not try to save character if one is not loaded"() {
+        
+        given:
+            repositoryAdapter.character = null
+        
+        when:
+            sut.saveCharacters()
+        
+        then:
+            0 * mockedSavePort.save(_ as Character)
+    }
 }

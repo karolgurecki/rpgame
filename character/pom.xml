@@ -23,6 +23,11 @@
             <artifactId>items</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>savestate</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Test -->
         <dependency>
@@ -50,6 +55,8 @@
                         --add-exports eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character.domain=ALL-UNNAMED
                         --add-reads eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
                         --add-opens eu.kgorecki.rpgame.userinterface/eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.savestale=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.savestale/eu.kgorecki.rpgame.savestale=ALL-UNNAMED
                     </argLine>
                 </configuration>
                 <dependencies>
