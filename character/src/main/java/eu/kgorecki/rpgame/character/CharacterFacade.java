@@ -31,4 +31,8 @@ public class CharacterFacade {
     public void saveCharacters(){
         saveService.save();
     }
+
+    public void loadCharacter(){
+        loadService.load();
+    }
 }

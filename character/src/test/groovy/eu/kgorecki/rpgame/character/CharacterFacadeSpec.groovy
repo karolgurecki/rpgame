@@ -1,19 +1,21 @@
 package eu.kgorecki.rpgame.character
 
 import eu.kgorecki.rpgame.character.domain.Character
+import eu.kgorecki.rpgame.character.domain.LoadPort
 import eu.kgorecki.rpgame.character.domain.SavePort
+import eu.kgorecki.rpgame.character.domain.UserInteractionPort
 import eu.kgorecki.rpgame.character.domain.UserMassages
 import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus
 import eu.kgorecki.rpgame.character.infrastructure.SingleCharacterRepositoryAdapter
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade
 import spock.lang.Specification
 
 class CharacterFacadeSpec extends Specification {
-    def mockedUserInterfaceFacade = Mock(UserInterfaceFacade)
+    def mockedUserInterfaceFacade = Mock(UserInteractionPort)
     def repositoryAdapter = new SingleCharacterRepositoryAdapter()
     def mockedSavePort = Mock(SavePort)
+    def mockedLoadPort = Mock(LoadPort)
     
-    def sut = CharacterFacadeFactory.createFacade(repositoryAdapter, mockedUserInterfaceFacade, mockedSavePort)
+    def sut = CharacterFacadeFactory.createFacade(repositoryAdapter, mockedUserInterfaceFacade, mockedSavePort, mockedLoadPort)
     
     def "should create character if one not exists"() {
         when:
@@ -66,7 +68,6 @@ class CharacterFacadeSpec extends Specification {
     }
     
     def "should not try to save character if one is not loaded"() {
-        
         given:
             repositoryAdapter.character = null
         
@@ -75,5 +76,31 @@ class CharacterFacadeSpec extends Specification {
         
         then:
             0 * mockedSavePort.save(_ as Character)
+    }
+    
+    def "should load character data to repository"() {
+        given:
+            def dut = new Character('test', 'test', '', '')
+        
+        when:
+            sut.loadCharacter()
+        
+        then:
+            1 * mockedLoadPort.load() >> Optional.of(dut)
+            repositoryAdapter.character == dut
+    }
+    
+    def "should not override existing data in character repository when character was not loaded"() {
+        given:
+            def dut = new Character('test', 'test', '', '')
+            repositoryAdapter.character = dut
+            mockedLoadPort.load() >> Optional.empty()
+        
+        when:
+            sut.loadCharacter()
+        
+        then:
+            repositoryAdapter.character == dut
+        
     }
 }

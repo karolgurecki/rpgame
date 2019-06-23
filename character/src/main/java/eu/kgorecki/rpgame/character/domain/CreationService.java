@@ -2,18 +2,17 @@ package eu.kgorecki.rpgame.character.domain;
 
 import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
 
 import java.util.Optional;
 
 public class CreationService {
 
     private final RepositoryPort repositoryPort;
-    private final UserInterfaceFacade userInterfaceFacade;
+    private final UserInteractionPort displayInformationPort;
 
-    public CreationService(RepositoryPort repositoryPort, UserInterfaceFacade userInterfaceFacade) {
+    public CreationService(RepositoryPort repositoryPort, UserInteractionPort displayInformationPort) {
         this.repositoryPort = repositoryPort;
-        this.userInterfaceFacade = userInterfaceFacade;
+        this.displayInformationPort = displayInformationPort;
     }
 
     public CharacterCreationStatus createCharacter() {
@@ -21,7 +20,7 @@ public class CreationService {
             return CharacterCreationStatus.ALREADY_CREATED;
         }
 
-        Character character = Character.createCharacter(userInterfaceFacade);
+        Character character = Character.createCharacter(displayInformationPort);
         repositoryPort.save(character);
 
         return CharacterCreationStatus.CREATED;

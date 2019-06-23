@@ -2,7 +2,6 @@ package eu.kgorecki.rpgame.character.domain;
 
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 import eu.kgorecki.rpgame.items.dto.ItemId;
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -30,7 +29,7 @@ public class Character {
         this.hitPoints = 10;
     }
 
-    public static Character createCharacter(UserInterfaceFacade userInterfaceFacade) {
+    public static Character createCharacter(UserInteractionPort userInterfaceFacade) {
         String name = userInterfaceFacade.getUserInputWithTextInTheSameLine(UserMassages.ENTER_NAME);
         String sex = userInterfaceFacade.getUserInputWithTextInTheSameLine(UserMassages.ENTER_SEX);
         String skinColor = userInterfaceFacade.getUserInputWithTextInTheSameLine(UserMassages.ENTER_SKIN_COLOR);
