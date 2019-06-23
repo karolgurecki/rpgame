@@ -22,7 +22,8 @@ public class InMemoryRepositoryAdapter implements RepositoryPort {
 
     @Override
     public Optional<Item> findOne(Id id) {
-        return Optional.ofNullable(items.get(id.getId()));
+        return items.size() < id.getId() ? Optional.empty() : Optional.ofNullable(items.get(id.getId()));
+
     }
 
     @Override

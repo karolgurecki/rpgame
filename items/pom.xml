@@ -38,6 +38,11 @@
                     </includes>
                     <argLine>
                         --add-opens eu.kgorecki.rpgame.items/eu.kgorecki.rpgame.items=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.items/eu.kgorecki.rpgame.items.infrastructure=ALL-UNNAMED
+                        --add-exports eu.kgorecki.rpgame.items/eu.kgorecki.rpgame.items.domain=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.items/eu.kgorecki.rpgame.items.domain=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.userinterface/eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
                     </argLine>
                 </configuration>
                 <dependencies>

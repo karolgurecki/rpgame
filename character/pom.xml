@@ -43,8 +43,13 @@
                         <include>**/*Spec.*</include>
                     </includes>
                     <argLine>
+                        --add-opens eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character=ALL-UNNAMED
                         --add-opens eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character.infrastructure=ALL-UNNAMED
                         --add-opens eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character.application=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character.domain=ALL-UNNAMED
+                        --add-exports eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character.domain=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.userinterface/eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
                     </argLine>
                 </configuration>
                 <dependencies>
