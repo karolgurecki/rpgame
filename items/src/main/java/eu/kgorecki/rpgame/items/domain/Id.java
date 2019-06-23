@@ -1,17 +1,24 @@
-package eu.kgorecki.rpgame.items.dto;
+package eu.kgorecki.rpgame.items.domain;
+
+
+import eu.kgorecki.rpgame.items.dto.ItemId;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ItemId implements Serializable {
+public class Id implements Serializable {
     private final int id;
 
-    public ItemId(int id) {
+    private Id(int id) {
         this.id = id;
     }
 
-    public static ItemId of(int id) {
-        return new ItemId(id);
+    public static Id of(int id) {
+        return new Id(id);
+    }
+
+    public static Id of(ItemId id) {
+        return new Id(id.getId());
     }
 
     public int getId() {
@@ -22,8 +29,8 @@ public class ItemId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ItemId itemId = (ItemId) o;
-        return id == itemId.id;
+        Id id1 = (Id) o;
+        return id == id1.id;
     }
 
     @Override

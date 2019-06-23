@@ -1,6 +1,6 @@
 package eu.kgorecki.rpgame.character;
 
-import eu.kgorecki.rpgame.character.application.CreationService;
+import eu.kgorecki.rpgame.character.domain.CreationService;
 import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 

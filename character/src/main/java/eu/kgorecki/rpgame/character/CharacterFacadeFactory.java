@@ -1,7 +1,7 @@
 package eu.kgorecki.rpgame.character;
 
-import eu.kgorecki.rpgame.character.application.CreationService;
-import eu.kgorecki.rpgame.character.application.RepositoryPort;
+import eu.kgorecki.rpgame.character.domain.CreationService;
+import eu.kgorecki.rpgame.character.domain.RepositoryPort;
 import eu.kgorecki.rpgame.character.infrastructure.SingleCharacterRepositoryAdapter;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory;

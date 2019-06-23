@@ -3,29 +3,21 @@ package eu.kgorecki.rpgame.items.dto;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Item {
-    private final String name;
+public class ItemStatistics {
+    private final ItemId id;
     private final ItemType type;
     private final BigDecimal attackModifier;
     private final BigDecimal defenceModifier;
 
-    private Item(String name, ItemType type, BigDecimal attackModifier, BigDecimal defenceModifier) {
-        this.name = name;
+    public ItemStatistics(ItemId id, ItemType type, BigDecimal attackModifier, BigDecimal defenceModifier) {
+        this.id = id;
         this.type = type;
         this.attackModifier = attackModifier;
         this.defenceModifier = defenceModifier;
     }
 
-    public static Item weaponOf(String name, BigDecimal attackModifier) {
-        return new Item(name, ItemType.WEAPON, attackModifier, BigDecimal.ZERO);
-    }
-
-    public static Item shieldOf(String name, BigDecimal attackModifier) {
-        return new Item(name, ItemType.SHIELD, BigDecimal.ZERO, attackModifier);
-    }
-
-    public String getName() {
-        return name;
+    public ItemId getId() {
+        return id;
     }
 
     public ItemType getType() {
@@ -44,12 +36,12 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return type == item.type;
+        ItemStatistics itemStats = (ItemStatistics) o;
+        return Objects.equals(id, itemStats.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type);
+        return Objects.hash(id);
     }
 }

@@ -1,6 +1,6 @@
 package eu.kgorecki.rpgame.character.infrastructure;
 
-import eu.kgorecki.rpgame.character.application.RepositoryPort;
+import eu.kgorecki.rpgame.character.domain.RepositoryPort;
 import eu.kgorecki.rpgame.character.domain.Character;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 
