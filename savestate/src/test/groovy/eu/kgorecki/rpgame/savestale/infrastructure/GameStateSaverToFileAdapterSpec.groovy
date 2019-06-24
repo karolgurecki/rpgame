@@ -3,9 +3,6 @@ package eu.kgorecki.rpgame.savestale.infrastructure
 import org.apache.commons.io.FileUtils
 import spock.lang.Specification
 
-import java.nio.file.Files
-import java.nio.file.Paths
-
 class GameStateSaverToFileAdapterSpec extends Specification {
     def gameSateLoader = new GameStateLoaderFromFileAdapter()
     def sut = new GameStateSaverToFileAdapter()

@@ -23,14 +23,14 @@ public class CharacterFacadeFactory {
     private CharacterFacadeFactory() {
     }
 
-    public static CharacterFacade createFacade(){
-        if(Objects.isNull(instance)){
+    public static CharacterFacade createFacade() {
+        if (Objects.isNull(instance)) {
             SingleCharacterRepositoryAdapter repositoryPort = new SingleCharacterRepositoryAdapter();
             DisplayInformationAdapter displayInformationPort = new DisplayInformationAdapter(
                     UserInterfaceFacadeFactory.createFacade());
             SaveAdapter savePort = new SaveAdapter(SaveStateFacadeFactory.createFacade());
             LoadPortAdapter loadPort = new LoadPortAdapter(SaveStateFacadeFactory.createFacade());
-            
+
             instance = createFacade(repositoryPort, displayInformationPort, savePort, loadPort);
         }
 

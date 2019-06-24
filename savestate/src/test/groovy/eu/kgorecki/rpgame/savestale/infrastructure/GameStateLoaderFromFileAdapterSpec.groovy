@@ -3,8 +3,6 @@ package eu.kgorecki.rpgame.savestale.infrastructure
 import org.apache.commons.io.FileUtils
 import spock.lang.Specification
 
-import java.nio.file.Files
-
 class GameStateLoaderFromFileAdapterSpec extends Specification {
     
     def "should load save state if file exists"() {

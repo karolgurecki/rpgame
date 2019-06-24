@@ -1,9 +1,6 @@
 package eu.kgorecki.rpgame.character.domain;
 
 class UserMassages {
-    private UserMassages() {    }
-
-
     static final String CHARACTER_NOT_LOADED = "Character not loaded.";
     static final String CHARACTER_LOADED = "Character loaded.";
     static final String CHARACTER_SAVED = "Character saved.";
@@ -12,4 +9,7 @@ class UserMassages {
     static final String ENTER_SEX = "Enter sex: ";
     static final String ENTER_SKIN_COLOR = "Enter race: ";
     static final String ENTER_JOB = "Enter job: ";
+
+    private UserMassages() {
+    }
 }

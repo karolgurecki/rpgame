@@ -20,17 +20,17 @@ public class FileService {
     }
 
     public <T> void save(T objectToSave) {
-        try{
+        try {
             gameStateSaverPort.saveGameState(objectToSave, objectToSave.getClass().getSimpleName());
-        } catch (CannotSaveGameStateException e){
+        } catch (CannotSaveGameStateException e) {
             userInterfaceFacade.displayText(e.getMessage());
         }
     }
 
     public <T> Optional<T> load(Class<T> clazzOfObjectToLoad) {
-        try{
+        try {
             return gameStateLoaderPort.loadGameState(clazzOfObjectToLoad.getSimpleName(), clazzOfObjectToLoad);
-        } catch (CannotLoadGameStateException | GameStateNotExistsException e){
+        } catch (CannotLoadGameStateException | GameStateNotExistsException e) {
             userInterfaceFacade.displayText(e.getMessage());
 
             return Optional.empty();

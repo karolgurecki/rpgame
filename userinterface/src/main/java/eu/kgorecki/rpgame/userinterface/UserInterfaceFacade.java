@@ -13,7 +13,7 @@ public class UserInterfaceFacade {
         service.displayText(text);
     }
 
-    public String getUserInput(){
+    public String getUserInput() {
         return service.getInputFromUser();
     }
 

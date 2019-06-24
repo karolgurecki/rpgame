@@ -20,19 +20,19 @@ public class CharacterFacade {
         this.loadService = loadService;
     }
 
-    public CharacterCreationStatus createCharacter(){
+    public CharacterCreationStatus createCharacter() {
         return creationService.createCharacter();
     }
 
-    public Optional<CharacterId> findLastCreated(){
+    public Optional<CharacterId> findLastCreated() {
         return creationService.findLastCreated();
     }
 
-    public void saveCharacters(){
+    public void saveCharacters() {
         saveService.save();
     }
 
-    public void loadCharacter(){
+    public void loadCharacter() {
         loadService.load();
     }
 }

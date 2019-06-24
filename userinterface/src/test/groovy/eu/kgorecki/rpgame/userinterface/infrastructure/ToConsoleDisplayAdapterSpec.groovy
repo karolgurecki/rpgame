@@ -12,8 +12,8 @@ class ToConsoleDisplayAdapterSpec extends Specification {
         given:
             def outStream = new ByteArrayOutputStream()
             System.setOut(new PrintStream(outStream))
-            
-            def sut =new ToConsoleDisplayAdapter()
+    
+            def sut = new ToConsoleDisplayAdapter()
         
         when:
             sut.displayText(text)

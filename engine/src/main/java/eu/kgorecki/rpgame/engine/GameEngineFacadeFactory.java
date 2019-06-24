@@ -11,9 +11,10 @@ public class GameEngineFacadeFactory {
 
     private static GameEngineFacade instance;
 
-    public static GameEngineFacade createFacade(){
-        if (instance == null){
-            instance = createFacade(new CommandPortAdapter(UserInterfaceFacadeFactory.createFacade()),new EnemyActionAdapter());
+    public static GameEngineFacade createFacade() {
+        if (instance == null) {
+            instance = createFacade(new CommandPortAdapter(UserInterfaceFacadeFactory.createFacade()),
+                    new EnemyActionAdapter());
         }
 
         return instance;

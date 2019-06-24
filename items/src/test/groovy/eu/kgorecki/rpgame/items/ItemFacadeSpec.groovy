@@ -89,6 +89,6 @@ class ItemFacadeSpec extends Specification {
             def result = sut.findItemStatistics(ItemStatisticsQuery.of(ItemId.of(0)))
     
         then:
-            result.filter({itemStats -> itemStats == item.getItemStatistics()}).isPresent()
+            result.filter({ itemStats -> itemStats == item.getItemStatistics() }).isPresent()
     }
 }

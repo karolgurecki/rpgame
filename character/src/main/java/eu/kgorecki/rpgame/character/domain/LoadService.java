@@ -16,7 +16,7 @@ public class LoadService {
     public void load() {
         Optional<Character> character = loadPort.load();
 
-        if(character.isEmpty()){
+        if (character.isEmpty()) {
             displayIntermationPort.displayText(UserMassages.CHARACTER_NOT_LOADED);
             return;
         }

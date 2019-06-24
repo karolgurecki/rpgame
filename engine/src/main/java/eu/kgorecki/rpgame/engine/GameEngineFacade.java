@@ -10,7 +10,7 @@ public class GameEngineFacade {
         this.service = service;
     }
 
-    public void runGame(){
+    public void runGame() {
         service.runGame();
     }
 }

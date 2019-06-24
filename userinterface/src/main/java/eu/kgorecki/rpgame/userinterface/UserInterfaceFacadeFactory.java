@@ -1,10 +1,10 @@
 package eu.kgorecki.rpgame.userinterface;
 
 import eu.kgorecki.rpgame.userinterface.application.DisplayPort;
-import eu.kgorecki.rpgame.userinterface.infrastructure.UserInputFromSystemInAdapter;
+import eu.kgorecki.rpgame.userinterface.application.UserInputPort;
 import eu.kgorecki.rpgame.userinterface.application.UserInteractionService;
 import eu.kgorecki.rpgame.userinterface.infrastructure.ToConsoleDisplayAdapter;
-import eu.kgorecki.rpgame.userinterface.application.UserInputPort;
+import eu.kgorecki.rpgame.userinterface.infrastructure.UserInputFromSystemInAdapter;
 
 public class UserInterfaceFacadeFactory {
 

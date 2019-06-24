@@ -21,6 +21,7 @@ class UserInputFromSystemInAdapterSpec extends Specification {
         where:
             text << ['test', 'my text', 'It works']
     }
+    
     @Unroll
     def "should give '#text' as user input and message in the same line"() {
         given:

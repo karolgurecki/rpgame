@@ -17,7 +17,7 @@ public class SaveService {
     public void save() {
         Optional<Character> character = repositoryPort.findLastCreated();
 
-        if(character.isEmpty()){
+        if (character.isEmpty()) {
             displayInformationPort.displayText(UserMassages.NO_CHARACTER_CANNOT_SAVE);
             return;
         }

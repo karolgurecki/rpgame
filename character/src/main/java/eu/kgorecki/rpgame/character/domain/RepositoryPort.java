@@ -1,6 +1,5 @@
 package eu.kgorecki.rpgame.character.domain;
 
-import eu.kgorecki.rpgame.character.domain.Character;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 
 import java.util.Optional;

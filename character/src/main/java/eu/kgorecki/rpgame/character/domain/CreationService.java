@@ -26,7 +26,7 @@ public class CreationService {
         return CharacterCreationStatus.CREATED;
     }
 
-    public Optional<CharacterId> findLastCreated(){
+    public Optional<CharacterId> findLastCreated() {
         return repositoryPort.findLastCreated()
                 .map(Character::getIdAsCharacterId);
     }

@@ -11,7 +11,7 @@ public class Id {
         this.id = id;
     }
 
-    public static Id generateId(){
+    public static Id generateId() {
         return new Id(UUID.randomUUID());
     }
 
