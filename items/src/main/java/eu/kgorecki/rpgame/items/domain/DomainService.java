@@ -4,7 +4,6 @@ import eu.kgorecki.rpgame.items.dto.DisplayItemInfoCommand;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.items.dto.ItemStatistics;
 import eu.kgorecki.rpgame.items.dto.ItemStatisticsQuery;
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
 
 import java.util.Optional;
 import java.util.Random;
@@ -13,11 +12,11 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DomainService {
 
     private final RepositoryPort repositoryPort;
-    private final UserInterfaceFacade userInterfaceFacade;
+    private final UserInteractionPort userInteractionPort;
 
-    public DomainService(RepositoryPort repositoryPort, UserInterfaceFacade userInterfaceFacade) {
+    public DomainService(RepositoryPort repositoryPort, UserInteractionPort userInteractionPort) {
         this.repositoryPort = repositoryPort;
-        this.userInterfaceFacade = userInterfaceFacade;
+        this.userInteractionPort = userInteractionPort;
     }
 
     public Optional<ItemId> getRandomItem() {
@@ -36,7 +35,7 @@ public class DomainService {
 
     public void displayItemInformation(DisplayItemInfoCommand displayItemInfo) {
         repositoryPort.findOne(Id.of(displayItemInfo.getItemId()))
-                .ifPresent(item -> userInterfaceFacade.displayText(item.toString()));
+                .ifPresent(item -> userInteractionPort.displayText(item.toString()));
     }
 
     public Optional<ItemStatistics> findItemStatistics(ItemStatisticsQuery query) {

@@ -1,19 +1,19 @@
 package eu.kgorecki.rpgame.items
 
 import eu.kgorecki.rpgame.items.domain.Item
+import eu.kgorecki.rpgame.items.domain.UserInteractionPort
 import eu.kgorecki.rpgame.items.dto.DisplayItemInfoCommand
 import eu.kgorecki.rpgame.items.dto.ItemId
 import eu.kgorecki.rpgame.items.dto.ItemStatisticsQuery
 import eu.kgorecki.rpgame.items.infrastructure.InMemoryRepositoryAdapter
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade
 import spock.lang.Specification
 
 class ItemFacadeSpec extends Specification {
     
     def repositoryAdapter = new InMemoryRepositoryAdapter(new ArrayList<Item>())
-    def mockedUserInterfaceFacade = Mock(UserInterfaceFacade)
+    def mockedUserInteractionPort = Mock(UserInteractionPort)
     
-    def sut = ItemFacadeFactory.createFacade(mockedUserInterfaceFacade, repositoryAdapter)
+    def sut = ItemFacadeFactory.createFacade(mockedUserInteractionPort, repositoryAdapter)
     
     def "should get item id when list of items is not empty"() {
         given:
@@ -63,7 +63,7 @@ class ItemFacadeSpec extends Specification {
             sut.displayItemInformation(DisplayItemInfoCommand.of(ItemId.of(0)))
     
         then:
-            1 * mockedUserInterfaceFacade.displayText(_ as String)
+            1 * mockedUserInteractionPort.displayText(_ as String)
     }
     
     def "should not display item information when item with given id  not exists"() {
@@ -74,7 +74,7 @@ class ItemFacadeSpec extends Specification {
             sut.displayItemInformation(DisplayItemInfoCommand.of(ItemId.of(100)))
     
         then:
-            0 * mockedUserInterfaceFacade.displayText(_ as String)
+            0 * mockedUserInteractionPort.displayText(_ as String)
     }
     
     def "should get item statistics for shoield type item"() {

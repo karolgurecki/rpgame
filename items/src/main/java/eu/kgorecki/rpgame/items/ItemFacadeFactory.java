@@ -2,8 +2,9 @@ package eu.kgorecki.rpgame.items;
 
 import eu.kgorecki.rpgame.items.domain.DomainService;
 import eu.kgorecki.rpgame.items.domain.RepositoryPort;
+import eu.kgorecki.rpgame.items.domain.UserInteractionPort;
 import eu.kgorecki.rpgame.items.infrastructure.InMemoryRepositoryAdapter;
-import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
+import eu.kgorecki.rpgame.items.infrastructure.UserInteractionAdapter;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory;
 
 public class ItemFacadeFactory {
@@ -12,14 +13,15 @@ public class ItemFacadeFactory {
 
     public static ItemFacade createFacade() {
         if (instance == null) {
-            instance = createFacade(UserInterfaceFacadeFactory.createFacade(), new InMemoryRepositoryAdapter());
+            instance = createFacade(new UserInteractionAdapter(UserInterfaceFacadeFactory.createFacade()),
+                    new InMemoryRepositoryAdapter());
         }
 
         return instance;
     }
 
-    private static ItemFacade createFacade(UserInterfaceFacade userInterfaceFacade, RepositoryPort repositoryPort) {
-        DomainService service = new DomainService(repositoryPort, userInterfaceFacade);
+    private static ItemFacade createFacade(UserInteractionPort userInteractionPort, RepositoryPort repositoryPort) {
+        DomainService service = new DomainService(repositoryPort, userInteractionPort);
 
         return new ItemFacade(service);
     }
