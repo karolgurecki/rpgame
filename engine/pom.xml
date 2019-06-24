@@ -11,5 +11,11 @@
 
     <artifactId>engine</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>userinterface</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
