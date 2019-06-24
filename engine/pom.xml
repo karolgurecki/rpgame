@@ -18,4 +18,31 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Spec.*</include>
+                    </includes>
+                    <argLine>
+                        --add-opens eu.kgorecki.rpgame.engine/eu.kgorecki.rpgame.engine=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.engine/eu.kgorecki.rpgame.engine.infrastructure=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.engine/eu.kgorecki.rpgame.engine.application=ALL-UNNAMED
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
