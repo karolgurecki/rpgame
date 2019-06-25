@@ -10,6 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>enemy</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>character</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>userinterface</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

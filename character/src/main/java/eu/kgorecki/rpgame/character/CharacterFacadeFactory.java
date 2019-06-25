@@ -7,10 +7,10 @@ import eu.kgorecki.rpgame.character.domain.RepositoryPort;
 import eu.kgorecki.rpgame.character.domain.SavePort;
 import eu.kgorecki.rpgame.character.domain.SaveService;
 import eu.kgorecki.rpgame.character.domain.UserInteractionPort;
-import eu.kgorecki.rpgame.character.infrastructure.DisplayInformationAdapter;
 import eu.kgorecki.rpgame.character.infrastructure.LoadPortAdapter;
 import eu.kgorecki.rpgame.character.infrastructure.SaveAdapter;
 import eu.kgorecki.rpgame.character.infrastructure.SingleCharacterRepositoryAdapter;
+import eu.kgorecki.rpgame.character.infrastructure.UserInteractionAdapter;
 import eu.kgorecki.rpgame.savestale.SaveStateFacadeFactory;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory;
 
@@ -26,7 +26,7 @@ public class CharacterFacadeFactory {
     public static CharacterFacade createFacade() {
         if (Objects.isNull(instance)) {
             SingleCharacterRepositoryAdapter repositoryPort = new SingleCharacterRepositoryAdapter();
-            DisplayInformationAdapter displayInformationPort = new DisplayInformationAdapter(
+            UserInteractionAdapter displayInformationPort = new UserInteractionAdapter(
                     UserInterfaceFacadeFactory.createFacade());
             SaveAdapter savePort = new SaveAdapter(SaveStateFacadeFactory.createFacade());
             LoadPortAdapter loadPort = new LoadPortAdapter(SaveStateFacadeFactory.createFacade());

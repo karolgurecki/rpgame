@@ -5,10 +5,10 @@ import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class DisplayInformationAdapterSpec extends Specification {
+class UserInteractionAdapterSpec extends Specification {
     
     def NEW_LINE = '\r\n'
-    def sut = new DisplayInformationAdapter(UserInterfaceFacadeFactory.createFacade())
+    def sut = new UserInteractionAdapter(UserInterfaceFacadeFactory.createFacade())
     
     @Unroll
     def "should display '#text'"() {
