@@ -12,10 +12,10 @@
         <module>engine</module>
         <module>character</module>
         <module>enemy</module>
-        <module>world</module>
         <module>savestate</module>
         <module>userinterface</module>
         <module>items</module>
+        <module>world</module>
     </modules>
 
     <properties>
