@@ -11,5 +11,56 @@
 
     <artifactId>world</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>character</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>enemy</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>savestate</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>userinterface</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Spec.*</include>
+                    </includes>
+                    <argLine>
+                        --add-opens eu.kgorecki.rpgame.world/eu.kgorecki.rpgame.world=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.world/eu.kgorecki.rpgame.world.infrastructure=ALL-UNNAMED
+                        --add-exports eu.kgorecki.rpgame.world/eu.kgorecki.rpgame.world.domain=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.world/eu.kgorecki.rpgame.world.domain=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.userinterface/eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
