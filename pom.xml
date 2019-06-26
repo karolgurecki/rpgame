@@ -16,6 +16,7 @@
         <module>userinterface</module>
         <module>items</module>
         <module>world</module>
+        <module>runner</module>
     </modules>
 
     <properties>
