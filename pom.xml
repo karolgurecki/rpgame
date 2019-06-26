@@ -17,6 +17,7 @@
         <module>items</module>
         <module>world</module>
         <module>runner</module>
+        <module>commands</module>
     </modules>
 
     <properties>
