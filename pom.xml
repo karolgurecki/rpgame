@@ -33,6 +33,7 @@
         <gmavenplus-plugin.version>1.7.1</gmavenplus-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <objenesis.version>3.0.1</objenesis.version>
     </properties>
 
     <dependencyManagement>
@@ -57,6 +58,11 @@
                 <artifactId>groovy-all</artifactId>
                 <version>${groovy.version}</version>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.objenesis</groupId>
+                <artifactId>objenesis</artifactId>
+                <version>${objenesis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

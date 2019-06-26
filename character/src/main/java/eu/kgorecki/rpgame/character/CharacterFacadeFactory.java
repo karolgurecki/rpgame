@@ -1,5 +1,6 @@
 package eu.kgorecki.rpgame.character;
 
+import eu.kgorecki.rpgame.character.domain.ActionService;
 import eu.kgorecki.rpgame.character.domain.CreationService;
 import eu.kgorecki.rpgame.character.domain.LoadPort;
 import eu.kgorecki.rpgame.character.domain.LoadService;
@@ -42,7 +43,8 @@ public class CharacterFacadeFactory {
         CreationService creationService = new CreationService(repositoryPort, displayInformationPort);
         SaveService saveService = new SaveService(savePort, repositoryPort, displayInformationPort);
         LoadService loadService = new LoadService(loadPort, repositoryPort, displayInformationPort);
+        ActionService actionService = new ActionService(repositoryPort);
 
-        return new CharacterFacade(creationService, saveService, loadService);
+        return new CharacterFacade(creationService, saveService, loadService, actionService);
     }
 }

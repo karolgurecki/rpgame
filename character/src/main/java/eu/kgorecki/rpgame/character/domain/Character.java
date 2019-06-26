@@ -1,6 +1,7 @@
 package eu.kgorecki.rpgame.character.domain;
 
 import eu.kgorecki.rpgame.character.dto.CharacterId;
+import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 
 import java.util.HashSet;
@@ -27,6 +28,17 @@ public class Character {
         this.equipment = new HashSet<>();
         this.attackModifier = new Random().nextInt(4);
         this.hitPoints = 10;
+    }
+
+    public Character(Id id, String name, String sex, String skinColor, String job, int attackModifier, int hitPoints, Set<ItemId> equipment) {
+        this.id = id;
+        this.name = name;
+        this.sex = sex;
+        this.skinColor = skinColor;
+        this.job = job;
+        this.attackModifier = attackModifier;
+        this.hitPoints = hitPoints;
+        this.equipment = equipment;
     }
 
     public static Character createCharacter(UserInteractionPort userInterfaceFacade) {
@@ -64,5 +76,11 @@ public class Character {
                 "\njob = " + job +
                 "\nbase attack power = " + attackModifier +
                 "\nhitPoints = " + hitPoints;
+    }
+
+    Character takeDamage(CharacterTakeDamageCommand command) {
+        int newHitPoints = hitPoints - command.getAttackPower();
+
+        return new Character(id, name, sex, skinColor, job, attackModifier, newHitPoints, equipment);
     }
 }

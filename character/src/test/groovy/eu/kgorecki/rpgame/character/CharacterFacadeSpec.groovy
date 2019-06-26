@@ -1,17 +1,14 @@
 package eu.kgorecki.rpgame.character
 
-import eu.kgorecki.rpgame.character.domain.Character
-import eu.kgorecki.rpgame.character.domain.LoadPort
-import eu.kgorecki.rpgame.character.domain.SavePort
-import eu.kgorecki.rpgame.character.domain.UserInteractionPort
-import eu.kgorecki.rpgame.character.domain.UserMassages
+import eu.kgorecki.rpgame.character.domain.*
 import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus
-import eu.kgorecki.rpgame.character.infrastructure.SingleCharacterRepositoryAdapter
+import eu.kgorecki.rpgame.character.dto.CharacterId
+import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand
 import spock.lang.Specification
 
 class CharacterFacadeSpec extends Specification {
     def mockedUserInterfaceFacade = Mock(UserInteractionPort)
-    def repositoryAdapter = new SingleCharacterRepositoryAdapter()
+    def repositoryAdapter = new SingleCharacterRepositoryAdapterForTests()
     def mockedSavePort = Mock(SavePort)
     def mockedLoadPort = Mock(LoadPort)
     
@@ -36,8 +33,8 @@ class CharacterFacadeSpec extends Specification {
                 sex == 'test sex'
             }
     }
-    
-    def "should return already create status when character already exists"() {
+
+    def "should already create status when character already exists"() {
         given:
             repositoryAdapter.character = new Character('', '', '', '')
         
@@ -101,6 +98,49 @@ class CharacterFacadeSpec extends Specification {
         
         then:
             repositoryAdapter.character == dut
-        
+    }
+
+    def "should take damage when attacked"() {
+        given:
+            def dut = new Character('test', 'test', '', '')
+            repositoryAdapter.save dut
+
+            def attackPowerOfEnemy = 2
+        when:
+            sut.takeDamage(new CharacterTakeDamageCommand(dut.getIdAsCharacterId(), attackPowerOfEnemy))
+
+        then:
+            repositoryAdapter.character.hitPoints == dut.hitPoints - attackPowerOfEnemy
+    }
+
+    class SingleCharacterRepositoryAdapterForTests implements RepositoryPort {
+
+        private Character character
+        private CharacterId characterId
+
+        @Override
+        void save(Character character) {
+            this.character = character
+            this.characterId = character.getIdAsCharacterId()
+        }
+
+        @Override
+        Optional<Character> findById(CharacterId id) {
+            if (Objects.nonNull(characterId) && characterId == id) {
+                return Optional.of(character)
+            }
+
+            Optional.empty()
+        }
+
+        @Override
+        long count() {
+            character == null ? 0 : 1
+        }
+
+        @Override
+        Optional<Character> findLastCreated() {
+            Optional.ofNullable(character)
+        }
     }
 }
