@@ -2,10 +2,11 @@ package eu.kgorecki.rpgame.enemy.domain;
 
 import eu.kgorecki.rpgame.enemy.dto.EnemyAttackPower;
 import eu.kgorecki.rpgame.enemy.dto.EnemyAttackPowerQuery;
+import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.enemy.dto.EnemyStatus;
 import eu.kgorecki.rpgame.enemy.dto.EnemyStatusQuery;
 import eu.kgorecki.rpgame.enemy.dto.EnemyTakeDamageCommand;
-import eu.kgorecki.rpgame.enemy.dto.PringEnemyInformationCommand;
+import eu.kgorecki.rpgame.enemy.dto.PrintEnemyInformationCommand;
 
 import java.util.Optional;
 
@@ -25,15 +26,9 @@ public class Service {
     }
 
     public void takeDamage(EnemyTakeDamageCommand command) {
-        Optional<Enemy> optionalEnemy = repositoryPort.findOne(Id.of(command.getEnemyId()));
-
-        if (optionalEnemy.isEmpty()) {
-            return;
-        }
-
-        Enemy enemy = optionalEnemy.get();
-
-        repositoryPort.saveOrUpdate(enemy.takeDamage(command));
+        repositoryPort.findOne(Id.of(command.getEnemyId()))
+                .map(enemy -> enemy.takeDamage(command))
+                .ifPresent(repositoryPort::saveOrUpdate);
     }
 
     public EnemyStatus getStatus(EnemyStatusQuery query) {
@@ -42,8 +37,13 @@ public class Service {
                 .orElse(EnemyStatus.NOT_EXISTS);
     }
 
-    public void pringEnemyInformation(PringEnemyInformationCommand command) {
+    public void printEnemyInformation(PrintEnemyInformationCommand command) {
         repositoryPort.findOne(Id.of(command.getEnemyId()))
                 .ifPresent(enemy -> userInteractionPort.displayText(enemy.toString()));
+    }
+
+    public Optional<EnemyId> findRandomEnemy() {
+        return repositoryPort.findRandomEnemy()
+                .map(Enemy::getIdAsEnemyId);
     }
 }

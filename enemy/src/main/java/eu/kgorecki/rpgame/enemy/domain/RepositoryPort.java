@@ -7,4 +7,6 @@ public interface RepositoryPort {
     Optional<Enemy> findOne(Id id);
 
     void saveOrUpdate(Enemy enemy);
+
+    Optional<Enemy> findRandomEnemy();
 }

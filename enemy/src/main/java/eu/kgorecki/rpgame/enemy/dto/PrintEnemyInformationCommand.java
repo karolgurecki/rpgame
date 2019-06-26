@@ -1,10 +1,10 @@
 package eu.kgorecki.rpgame.enemy.dto;
 
-public class PringEnemyInformationCommand {
+public class PrintEnemyInformationCommand {
 
     private final EnemyId enemyId;
 
-    public PringEnemyInformationCommand(EnemyId enemyId) {
+    public PrintEnemyInformationCommand(EnemyId enemyId) {
         this.enemyId = enemyId;
     }
 

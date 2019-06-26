@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 
 public class InMemoryRepositoryAdapter implements RepositoryPort {
@@ -37,6 +38,18 @@ public class InMemoryRepositoryAdapter implements RepositoryPort {
 
     @Override
     public void saveOrUpdate(Enemy enemy) {
+        enemies.remove(enemy);
         enemies.add(enemy);
+    }
+
+    @Override
+    public Optional<Enemy> findRandomEnemy() {
+        if (enemies.isEmpty()) {
+            return Optional.empty();
+        }
+
+        int enemyNumber = new Random().nextInt(enemies.size());
+
+        return Optional.of((Enemy) enemies.toArray()[enemyNumber]);
     }
 }

@@ -24,4 +24,32 @@
     </dependencies>
 
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Spec.*</include>
+                    </includes>
+                    <argLine>
+                        --add-opens eu.kgorecki.rpgame.enemy/eu.kgorecki.rpgame.enemy=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.enemy/eu.kgorecki.rpgame.enemy.infrastructure=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.enemy/eu.kgorecki.rpgame.enemy.application=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.enemy/eu.kgorecki.rpgame.enemy.domain=ALL-UNNAMED
+                        --add-exports eu.kgorecki.rpgame.enemy/eu.kgorecki.rpgame.enemy.domain=ALL-UNNAMED
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>

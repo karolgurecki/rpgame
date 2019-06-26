@@ -1,6 +1,7 @@
 package eu.kgorecki.rpgame.enemy.domain;
 
 import eu.kgorecki.rpgame.enemy.dto.EnemyAttackPower;
+import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.enemy.dto.EnemyStatus;
 import eu.kgorecki.rpgame.enemy.dto.EnemyTakeDamageCommand;
 
@@ -62,5 +63,9 @@ public class Enemy {
 
     public Id getId() {
         return id;
+    }
+
+    public EnemyId getIdAsEnemyId() {
+        return EnemyId.of(id.getId());
     }
 }
