@@ -1,7 +1,7 @@
 package eu.kgorecki.rpgame.engine
 
-import eu.kgorecki.rpgame.engine.application.CommandPort
-import eu.kgorecki.rpgame.engine.application.EnemyActionPort
+import eu.kgorecki.rpgame.engine.domain.CommandPort
+import eu.kgorecki.rpgame.engine.domain.EnemyActionPort
 import spock.lang.Specification
 
 class GameEngineFacadeSpec extends Specification {

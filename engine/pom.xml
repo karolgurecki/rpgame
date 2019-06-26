@@ -17,6 +17,33 @@
             <artifactId>userinterface</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>enemy</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>character</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>world</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -32,7 +59,13 @@
                     <argLine>
                         --add-opens eu.kgorecki.rpgame.engine/eu.kgorecki.rpgame.engine=ALL-UNNAMED
                         --add-opens eu.kgorecki.rpgame.engine/eu.kgorecki.rpgame.engine.infrastructure=ALL-UNNAMED
-                        --add-opens eu.kgorecki.rpgame.engine/eu.kgorecki.rpgame.engine.application=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.engine/eu.kgorecki.rpgame.engine.domain=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.enemy=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.enemy/eu.kgorecki.rpgame.enemy=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.character=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.world=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.world/eu.kgorecki.rpgame.world=ALL-UNNAMED
                     </argLine>
                 </configuration>
                 <dependencies>

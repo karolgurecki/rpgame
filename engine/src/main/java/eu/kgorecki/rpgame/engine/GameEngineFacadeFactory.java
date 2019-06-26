@@ -1,11 +1,14 @@
 package eu.kgorecki.rpgame.engine;
 
-import eu.kgorecki.rpgame.engine.application.CommandPort;
-import eu.kgorecki.rpgame.engine.application.EnemyActionPort;
-import eu.kgorecki.rpgame.engine.application.Service;
+import eu.kgorecki.rpgame.character.CharacterFacadeFactory;
+import eu.kgorecki.rpgame.enemy.EnemyFacadeFactory;
+import eu.kgorecki.rpgame.engine.domain.CommandPort;
+import eu.kgorecki.rpgame.engine.domain.EnemyActionPort;
+import eu.kgorecki.rpgame.engine.domain.Service;
 import eu.kgorecki.rpgame.engine.infrastructure.CommandPortAdapter;
 import eu.kgorecki.rpgame.engine.infrastructure.EnemyActionAdapter;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory;
+import eu.kgorecki.rpgame.world.WorldFacadeFactory;
 
 public class GameEngineFacadeFactory {
 
@@ -13,8 +16,11 @@ public class GameEngineFacadeFactory {
 
     public static GameEngineFacade createFacade() {
         if (instance == null) {
-            instance = createFacade(new CommandPortAdapter(UserInterfaceFacadeFactory.createFacade()),
-                    new EnemyActionAdapter());
+            CommandPortAdapter commandPort = new CommandPortAdapter(UserInterfaceFacadeFactory.createFacade());
+            EnemyActionAdapter enemyActionPort = new EnemyActionAdapter(EnemyFacadeFactory.createFacade(), CharacterFacadeFactory
+                    .createFacade(), WorldFacadeFactory.createFacade());
+
+            instance = createFacade(commandPort, enemyActionPort);
         }
 
         return instance;

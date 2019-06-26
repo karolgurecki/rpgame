@@ -1,6 +1,6 @@
 package eu.kgorecki.rpgame.engine;
 
-import eu.kgorecki.rpgame.engine.application.Service;
+import eu.kgorecki.rpgame.engine.domain.Service;
 
 public class GameEngineFacade {
 

@@ -1,4 +1,4 @@
-package eu.kgorecki.rpgame.engine.application;
+package eu.kgorecki.rpgame.engine.domain;
 
 public class Service {
 

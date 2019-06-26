@@ -1,6 +1,6 @@
 package eu.kgorecki.rpgame.engine.infrastructure;
 
-import eu.kgorecki.rpgame.engine.application.CommandPort;
+import eu.kgorecki.rpgame.engine.domain.CommandPort;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
 
 public class CommandPortAdapter implements CommandPort {

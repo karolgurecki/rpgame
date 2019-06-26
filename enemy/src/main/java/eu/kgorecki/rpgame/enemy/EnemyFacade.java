@@ -18,7 +18,7 @@ public class EnemyFacade {
         this.service = service;
     }
 
-    public Optional<EnemyAttackPower> getAttackPower(EnemyAttackPowerQuery query) {
+    public Optional<EnemyAttackPower> findAttackPower(EnemyAttackPowerQuery query) {
         return service.getAttackPower(query);
     }
 
