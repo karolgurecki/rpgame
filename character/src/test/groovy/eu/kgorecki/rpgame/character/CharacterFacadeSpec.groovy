@@ -1,9 +1,7 @@
 package eu.kgorecki.rpgame.character
 
 import eu.kgorecki.rpgame.character.domain.*
-import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus
-import eu.kgorecki.rpgame.character.dto.CharacterId
-import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand
+import eu.kgorecki.rpgame.character.dto.*
 import spock.lang.Specification
 
 class CharacterFacadeSpec extends Specification {
@@ -11,9 +9,10 @@ class CharacterFacadeSpec extends Specification {
     def repositoryAdapter = new SingleCharacterRepositoryAdapterForTests()
     def mockedSavePort = Mock(SavePort)
     def mockedLoadPort = Mock(LoadPort)
-    
-    def sut = CharacterFacadeFactory.createFacade(repositoryAdapter, mockedUserInterfaceFacade, mockedSavePort, mockedLoadPort)
-    
+    def mockedItemPort = Mock(ItemsPort)
+
+    def sut = CharacterFacadeFactory.createFacade(repositoryAdapter, mockedUserInterfaceFacade, mockedSavePort, mockedLoadPort, mockedItemPort)
+
     def "should create character if one not exists"() {
         when:
             def resultStatus = sut.createCharacter()
@@ -111,6 +110,36 @@ class CharacterFacadeSpec extends Specification {
 
         then:
             repositoryAdapter.character.hitPoints == dut.hitPoints - attackPowerOfEnemy
+    }
+
+    def "should return character status as alive when hit point > 0"() {
+        given:
+            def dut = new Character(Id.generateId(), 'test', 'test', '', '', 2, 2, Collections.emptySet())
+
+            repositoryAdapter.save dut
+
+        expect:
+            sut.findCharacterStatus(new CharacterStatusQuery(dut.getIdAsCharacterId())) == Optional.of(CharacterStatus.ALIVE)
+    }
+
+    def "should return character status as dead when hit point > 0"() {
+        given:
+            def dut = new Character(Id.generateId(), 'test', 'test', '', '', 2, 0, Collections.emptySet())
+
+            repositoryAdapter.save dut
+        expect:
+            sut.findCharacterStatus(new CharacterStatusQuery(dut.getIdAsCharacterId())) == Optional.of(CharacterStatus.DEAD)
+    }
+
+
+    def "should return character attack power"() {
+        given:
+            def attackPower = 2
+            def dut = new Character(Id.generateId(), 'test', 'test', '', '', attackPower, 0, Collections.emptySet())
+
+            repositoryAdapter.save dut
+        expect:
+            sut.findAttackPower(new CharacterAttackPowerQuery(dut.getIdAsCharacterId())) == Optional.of(new CharacterAttackPower(attackPower))
     }
 
     class SingleCharacterRepositoryAdapterForTests implements RepositoryPort {

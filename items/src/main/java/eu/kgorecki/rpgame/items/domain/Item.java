@@ -4,16 +4,14 @@ import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.items.dto.ItemStatistics;
 import eu.kgorecki.rpgame.items.dto.ItemType;
 
-import java.math.BigDecimal;
-
 public class Item {
     private final Id id;
     private final String name;
     private final Type type;
-    private final BigDecimal attackModifier;
-    private final BigDecimal defenceModifier;
+    private final int attackModifier;
+    private final int defenceModifier;
 
-    private Item(Id id, String name, Type type, BigDecimal attackModifier, BigDecimal defenceModifier) {
+    private Item(Id id, String name, Type type, int attackModifier, int defenceModifier) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -21,12 +19,12 @@ public class Item {
         this.defenceModifier = defenceModifier;
     }
 
-    public static Item weaponOf(int id, String name, BigDecimal attackModifier) {
-        return new Item(Id.of(id), name, Type.WEAPON, attackModifier, BigDecimal.ZERO);
+    public static Item weaponOf(int id, String name, int attackModifier) {
+        return new Item(Id.of(id), name, Type.WEAPON, attackModifier, 0);
     }
 
-    public static Item shieldOf(int id, String name, BigDecimal defenceModifier) {
-        return new Item(Id.of(id), name, Type.SHIELD, BigDecimal.ZERO, defenceModifier);
+    public static Item shieldOf(int id, String name, int defenceModifier) {
+        return new Item(Id.of(id), name, Type.SHIELD, 0, defenceModifier);
     }
 
     public Id getId() {

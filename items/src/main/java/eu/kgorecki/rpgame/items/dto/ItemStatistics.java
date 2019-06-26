@@ -1,15 +1,14 @@
 package eu.kgorecki.rpgame.items.dto;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ItemStatistics {
     private final ItemId id;
     private final ItemType type;
-    private final BigDecimal attackModifier;
-    private final BigDecimal defenceModifier;
+    private final int attackModifier;
+    private final int defenceModifier;
 
-    public ItemStatistics(ItemId id, ItemType type, BigDecimal attackModifier, BigDecimal defenceModifier) {
+    public ItemStatistics(ItemId id, ItemType type, int attackModifier, int defenceModifier) {
         this.id = id;
         this.type = type;
         this.attackModifier = attackModifier;
@@ -24,11 +23,11 @@ public class ItemStatistics {
         return type;
     }
 
-    public BigDecimal getAttackModifier() {
+    public int getAttackModifier() {
         return attackModifier;
     }
 
-    public BigDecimal getDefenceModifier() {
+    public int getDefenceModifier() {
         return defenceModifier;
     }
 

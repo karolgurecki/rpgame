@@ -1,11 +1,14 @@
 package eu.kgorecki.rpgame.character.domain;
 
+import eu.kgorecki.rpgame.character.dto.CharacterAttackPower;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
+import eu.kgorecki.rpgame.character.dto.CharacterStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
@@ -41,7 +44,7 @@ public class Character {
         this.equipment = equipment;
     }
 
-    public static Character createCharacter(UserInteractionPort userInterfaceFacade) {
+    static Character createCharacter(UserInteractionPort userInterfaceFacade) {
         String name = userInterfaceFacade.getUserInputWithTextInTheSameLine(UserMassages.ENTER_NAME);
         String sex = userInterfaceFacade.getUserInputWithTextInTheSameLine(UserMassages.ENTER_SEX);
         String skinColor = userInterfaceFacade.getUserInputWithTextInTheSameLine(UserMassages.ENTER_SKIN_COLOR);
@@ -52,6 +55,43 @@ public class Character {
 
     public CharacterId getIdAsCharacterId() {
         return CharacterId.of(id.getId());
+    }
+
+    CharacterAttackPower getCharacterAttackPower(ItemsPort itemsPort) {
+        int attackPowerFromItemInEquipment = equipment.stream()
+                .map(itemsPort::findAttackPower)
+                .filter(Optional::isPresent)
+                .mapToInt(Optional::get)
+                .sum();
+
+        return new CharacterAttackPower(attackModifier + attackPowerFromItemInEquipment);
+    }
+
+    Character takeDamage(CharacterTakeDamageCommand command, ItemsPort itemsPort) {
+
+        int defencePowerFromItemInEquipment = equipment.stream()
+                .map(itemsPort::findDefencePower)
+                .filter(Optional::isPresent)
+                .mapToInt(Optional::get)
+                .sum();
+
+        int actualEnemyAttackPower = getActualEnemyAttackPower(defencePowerFromItemInEquipment, command.getAttackPower());
+
+        if (defencePowerFromItemInEquipment > 0 && actualEnemyAttackPower <= 0) {
+            return this;
+        }
+
+        int newHitPoints = hitPoints - actualEnemyAttackPower;
+
+        return new Character(id, name, sex, skinColor, job, attackModifier, newHitPoints, equipment);
+    }
+
+    private int getActualEnemyAttackPower(int defencePowerFromItemInEquipment, int attackPower) {
+        return defencePowerFromItemInEquipment > 0 ? defencePowerFromItemInEquipment - attackPower : attackPower;
+    }
+
+    CharacterStatus getStatus() {
+        return hitPoints > 0 ? CharacterStatus.ALIVE : CharacterStatus.DEAD;
     }
 
     @Override
@@ -76,11 +116,5 @@ public class Character {
                 "\njob = " + job +
                 "\nbase attack power = " + attackModifier +
                 "\nhitPoints = " + hitPoints;
-    }
-
-    Character takeDamage(CharacterTakeDamageCommand command) {
-        int newHitPoints = hitPoints - command.getAttackPower();
-
-        return new Character(id, name, sex, skinColor, job, attackModifier, newHitPoints, equipment);
     }
 }

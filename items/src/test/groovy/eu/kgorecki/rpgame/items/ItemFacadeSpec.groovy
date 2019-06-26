@@ -17,7 +17,7 @@ class ItemFacadeSpec extends Specification {
     
     def "should get item id when list of items is not empty"() {
         given:
-            def item = Item.shieldOf(0, 'test shield', BigDecimal.ONE)
+            def item = Item.shieldOf(0, 'test shield', 1)
             
             repositoryAdapter.items.clear()
             repositoryAdapter.items.add(item)
@@ -31,8 +31,8 @@ class ItemFacadeSpec extends Specification {
     
     def "should get item  id from list of items"() {
         given:
-            def items = [Item.shieldOf(0, 'test shield', BigDecimal.ONE),
-                         Item.shieldOf(1, 'test shield1', BigDecimal.ONE)]
+            def items = [Item.shieldOf(0, 'test shield', 1),
+                         Item.shieldOf(1, 'test shield1', 1)]
             
             repositoryAdapter.items.clear()
             repositoryAdapter.items.addAll(items)
@@ -54,7 +54,7 @@ class ItemFacadeSpec extends Specification {
     
     def "should display item information when item with given id exists"() {
         given:
-            def item = Item.shieldOf(0, 'test shield', BigDecimal.ONE)
+            def item = Item.shieldOf(0, 'test shield', 1)
     
             repositoryAdapter.items.clear()
             repositoryAdapter.items.add(item)
@@ -79,7 +79,7 @@ class ItemFacadeSpec extends Specification {
     
     def "should get item statistics for shoield type item"() {
         given:
-            def item = Item.shieldOf(0, 'test shield', BigDecimal.ONE)
+            def item = Item.shieldOf(0, 'test shield', 1)
     
             repositoryAdapter.items.clear()
             repositoryAdapter.items.add(item)
