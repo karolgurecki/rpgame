@@ -12,7 +12,10 @@ public class InMemoryRepositoryAdapter implements RepositoryPort {
     private final List<Item> items;
 
     public InMemoryRepositoryAdapter() {
-        this(List.of(Item.shieldOf(0, "wooden shield", 1)));
+        this(List.of(Item.shieldOf(0, "wooden shield", 1),
+                Item.weaponOf(1, "wooden sword", 1),
+                Item.weaponOf(2, "Steel sword", 2),
+                Item.shieldOf(3, "Steel shield", 2)));
     }
 
     InMemoryRepositoryAdapter(List<Item> items) {

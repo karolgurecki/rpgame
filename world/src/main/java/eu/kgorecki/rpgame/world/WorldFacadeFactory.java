@@ -1,5 +1,7 @@
 package eu.kgorecki.rpgame.world;
 
+import eu.kgorecki.rpgame.enemy.EnemyFacadeFactory;
+import eu.kgorecki.rpgame.items.ItemFacadeFactory;
 import eu.kgorecki.rpgame.savestale.SaveStateFacadeFactory;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory;
 import eu.kgorecki.rpgame.world.domain.CreateWorldService;
@@ -27,7 +29,8 @@ public class WorldFacadeFactory {
             SaverPort saverPort = new SaverAdapter(SaveStateFacadeFactory.createFacade());
             LoaderPort loaderPort = new LoaderAdapter(SaveStateFacadeFactory.createFacade());
             UserInteractionPort userInteractionPort = new UserInteractionAdapter(UserInterfaceFacadeFactory.createFacade());
-            WorldRoomCreatorPort worldRoomCreatorPort = new WorldRoomCreatorAdapter();
+            WorldRoomCreatorPort worldRoomCreatorPort = new WorldRoomCreatorAdapter(EnemyFacadeFactory.createFacade(),
+                    ItemFacadeFactory.createFacade());
 
             intrance = createFacade(repositoryPort, saverPort, loaderPort, userInteractionPort, worldRoomCreatorPort);
         }
@@ -38,7 +41,8 @@ public class WorldFacadeFactory {
     private static WorldFacade createFacade(RepositoryPort repositoryPort, SaverPort saverPort, LoaderPort loaderPort,
                                             UserInteractionPort userInteractionPort, WorldRoomCreatorPort worldRoomCreatorPort) {
         ManageWorldStateService service = new ManageWorldStateService(repositoryPort, saverPort, loaderPort, userInteractionPort);
-        CreateWorldService createWorldService = new CreateWorldService(repositoryPort, worldRoomCreatorPort);
+        CreateWorldService createWorldService = new CreateWorldService(repositoryPort, worldRoomCreatorPort,
+                userInteractionPort);
 
         return new WorldFacade(service, createWorldService);
     }

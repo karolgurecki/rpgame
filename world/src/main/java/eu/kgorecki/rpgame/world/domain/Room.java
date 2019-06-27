@@ -11,22 +11,28 @@ import java.util.Optional;
 public class Room {
     private static final String PATH_NOT_FOUND_MESSAGE = "You can not move in this direction.";
 
+    private final String introduction;
     private final ItemId item;
     private final EnemyId enemy;
     private final Map<Direction, Room> paths;
 
-    private Room(ItemId item, EnemyId enemy, Map<Direction, Room> paths) {
+    private Room(String introduction, ItemId item, EnemyId enemy, Map<Direction, Room> paths) {
+        this.introduction = introduction;
         this.item = item;
         this.enemy = enemy;
         this.paths = paths;
     }
 
-    public static Room roomWithItem(ItemId item, Map<Direction, Room> paths) {
-        return new Room(item, null, paths);
+    public static Room roomWithItem(String introduction, ItemId item, Map<Direction, Room> paths) {
+        return new Room(introduction, item, null, paths);
     }
 
-    public static Room roomWithEnemy(EnemyId enemy, Map<Direction, Room> paths) {
-        return new Room(null, enemy, paths);
+    public static Room roomWithEnemy(String introduction, EnemyId enemy, Map<Direction, Room> paths) {
+        return new Room(introduction, null, enemy, paths);
+    }
+
+    public static Room emptyRoom(String introduction, Map<Direction, Room> paths) {
+        return new Room(introduction, null, null, paths);
     }
 
     ItemId getItem() {
@@ -47,6 +53,10 @@ public class Room {
         }
 
         return Optional.ofNullable(path);
+    }
+
+    void printIntroduction(UserInteractionPort userInteractionPort) {
+        userInteractionPort.displayText(introduction);
     }
 
     @Override

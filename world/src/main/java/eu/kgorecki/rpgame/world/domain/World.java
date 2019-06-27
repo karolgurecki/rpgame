@@ -16,7 +16,9 @@ public class World {
         this.currentRoom = currentRoom;
     }
 
-    World changeRoom(Room newRoom) {
+    World changeRoom(Room newRoom, UserInteractionPort userInteractionPort) {
+        newRoom.printIntroduction(userInteractionPort);
+
         return new World(character, newRoom);
     }
 
@@ -35,7 +37,7 @@ public class World {
 
     World moveCharacter(MoveCharacterCommand command, UserInteractionPort userInteractionPort) {
         return currentRoom.move(command, userInteractionPort)
-                .map(this::changeRoom)
+                .map(newRoom -> changeRoom(newRoom, userInteractionPort))
                 .orElse(this);
     }
 

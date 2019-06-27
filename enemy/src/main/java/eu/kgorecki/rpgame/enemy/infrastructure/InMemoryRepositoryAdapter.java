@@ -15,7 +15,9 @@ public class InMemoryRepositoryAdapter implements RepositoryPort {
     private final Set<Enemy> enemies;
 
     public InMemoryRepositoryAdapter() {
-        this(Enemy.of(0, "troll", 3, 2, 1));
+        this(Enemy.of(0, "Troll", 3, 1, 1),
+                Enemy.of(1, "Dragon", 10, 3, 3),
+                Enemy.of(2, "Gnome", 4, 2, 1));
     }
 
     private InMemoryRepositoryAdapter(Enemy... enemies) {
