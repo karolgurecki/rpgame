@@ -12,6 +12,7 @@ import eu.kgorecki.rpgame.character.dto.CharacterId;
 import eu.kgorecki.rpgame.character.dto.CharacterStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterStatusQuery;
 import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
+import eu.kgorecki.rpgame.character.dto.EquipItemCommand;
 
 import java.util.Optional;
 
@@ -50,6 +51,10 @@ public class CharacterFacade {
 
     public void takeDamage(CharacterTakeDamageCommand characterTakeDamageCommand) {
         actionService.takeDamage(characterTakeDamageCommand);
+    }
+
+    public void equipItem(EquipItemCommand command) {
+        actionService.equipItem(command);
     }
 
     public Optional<CharacterStatus> findCharacterStatus(CharacterStatusQuery query) {

@@ -4,6 +4,7 @@ import eu.kgorecki.rpgame.character.dto.CharacterAttackPower;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 import eu.kgorecki.rpgame.character.dto.CharacterStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
+import eu.kgorecki.rpgame.character.dto.EquipItemCommand;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 
 import java.util.HashSet;
@@ -116,5 +117,13 @@ public class Character {
                 "\njob = " + job +
                 "\nbase attack power = " + attackModifier +
                 "\nhitPoints = " + hitPoints;
+    }
+
+    Character equipItem(EquipItemCommand command, UserInteractionPort userInteractionPort) {
+        equipment.add(command.getItemId());
+
+        userInteractionPort.displayText("Item equipped");
+
+        return this;
     }
 }

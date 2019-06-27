@@ -1,7 +1,23 @@
 package eu.kgorecki.rpgame.character
 
-import eu.kgorecki.rpgame.character.domain.*
-import eu.kgorecki.rpgame.character.dto.*
+
+import eu.kgorecki.rpgame.character.domain.Character
+import eu.kgorecki.rpgame.character.domain.Id
+import eu.kgorecki.rpgame.character.domain.ItemsPort
+import eu.kgorecki.rpgame.character.domain.LoadPort
+import eu.kgorecki.rpgame.character.domain.RepositoryPort
+import eu.kgorecki.rpgame.character.domain.SavePort
+import eu.kgorecki.rpgame.character.domain.UserInteractionPort
+import eu.kgorecki.rpgame.character.domain.UserMassages
+import eu.kgorecki.rpgame.character.dto.CharacterAttackPower
+import eu.kgorecki.rpgame.character.dto.CharacterAttackPowerQuery
+import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus
+import eu.kgorecki.rpgame.character.dto.CharacterId
+import eu.kgorecki.rpgame.character.dto.CharacterStatus
+import eu.kgorecki.rpgame.character.dto.CharacterStatusQuery
+import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand
+import eu.kgorecki.rpgame.character.dto.EquipItemCommand
+import eu.kgorecki.rpgame.items.dto.ItemId
 import spock.lang.Specification
 
 class CharacterFacadeSpec extends Specification {
@@ -131,7 +147,6 @@ class CharacterFacadeSpec extends Specification {
             sut.findCharacterStatus(new CharacterStatusQuery(dut.getIdAsCharacterId())) == Optional.of(CharacterStatus.DEAD)
     }
 
-
     def "should return character attack power"() {
         given:
             def attackPower = 2
@@ -141,7 +156,22 @@ class CharacterFacadeSpec extends Specification {
         expect:
             sut.findAttackPower(new CharacterAttackPowerQuery(dut.getIdAsCharacterId())) == Optional.of(new CharacterAttackPower(attackPower))
     }
-
+    
+    
+    def "should equip item to  character"() {
+        given:
+            def dut = new Character('test', 'test', '', '')
+            
+            repositoryAdapter.save dut
+            
+            def itemToEquip = ItemId.of(0)
+        when:
+            sut.equipItem(new EquipItemCommand(dut.getIdAsCharacterId(), itemToEquip))
+        
+        then:
+            repositoryAdapter.character.equipment.contains(itemToEquip)
+    }
+    
     class SingleCharacterRepositoryAdapterForTests implements RepositoryPort {
 
         private Character character
