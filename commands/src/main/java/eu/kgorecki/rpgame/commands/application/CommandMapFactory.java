@@ -10,6 +10,7 @@ import eu.kgorecki.rpgame.commands.application.commands.MoveRightCommand;
 import eu.kgorecki.rpgame.commands.application.commands.SaveCommand;
 import eu.kgorecki.rpgame.commands.infrastructure.CharacterAdapter;
 import eu.kgorecki.rpgame.commands.infrastructure.EnemyAdapter;
+import eu.kgorecki.rpgame.commands.infrastructure.LoadAdapter;
 import eu.kgorecki.rpgame.commands.infrastructure.SaveAdapter;
 import eu.kgorecki.rpgame.commands.infrastructure.UserInteractionAdapter;
 import eu.kgorecki.rpgame.commands.infrastructure.WorldAdapter;
@@ -32,7 +33,7 @@ public class CommandMapFactory {
             .createFacade());
     private static final SavePort SAVE_PORT = new SaveAdapter(WorldFacadeFactory.createFacade(),
             CharacterFacadeFactory.createFacade());
-    private static final SavePort LOAD_PORT = new SaveAdapter(WorldFacadeFactory.createFacade(),
+    private static final LoadPort LOAD_PORT = new LoadAdapter(WorldFacadeFactory.createFacade(),
             CharacterFacadeFactory.createFacade());
 
     private static final List<Command> COMMANDS = List.of(
