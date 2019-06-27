@@ -4,11 +4,12 @@ import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.world.dto.MoveCharacterCommand;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Room {
+public class Room implements Serializable {
     private static final String PATH_NOT_FOUND_MESSAGE = "You can not move in this direction.";
 
     private final String introduction;

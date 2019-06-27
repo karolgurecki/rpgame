@@ -5,9 +5,10 @@ import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.enemy.dto.EnemyStatus;
 import eu.kgorecki.rpgame.enemy.dto.EnemyTakeDamageCommand;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Enemy {
+public class Enemy implements Serializable {
     private final Id id;
     private final String name;
     private final int hitPoints;

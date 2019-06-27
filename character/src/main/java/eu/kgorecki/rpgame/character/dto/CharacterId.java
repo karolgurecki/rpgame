@@ -1,9 +1,10 @@
 package eu.kgorecki.rpgame.character.dto;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CharacterId {
+public class CharacterId implements Serializable {
     private final UUID id;
 
     private CharacterId(UUID id) {

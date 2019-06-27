@@ -7,13 +7,14 @@ import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
 import eu.kgorecki.rpgame.character.dto.EquipItemCommand;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
-public class Character {
+public class Character implements Serializable {
     private final Id id;
     private final String name;
     private final String sex;

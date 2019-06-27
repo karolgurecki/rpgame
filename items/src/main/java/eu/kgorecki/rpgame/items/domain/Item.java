@@ -4,7 +4,9 @@ import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.items.dto.ItemStatistics;
 import eu.kgorecki.rpgame.items.dto.ItemType;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     private final Id id;
     private final String name;
     private final Type type;

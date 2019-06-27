@@ -5,9 +5,10 @@ import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.world.dto.MoveCharacterCommand;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class World {
+public class World implements Serializable {
     private final CharacterId character;
     private final Room currentRoom;
 

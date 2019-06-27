@@ -1,8 +1,9 @@
 package eu.kgorecki.rpgame.enemy.dto;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class EnemyId {
+public class EnemyId implements Serializable {
     private final int id;
 
     private EnemyId(int id) {

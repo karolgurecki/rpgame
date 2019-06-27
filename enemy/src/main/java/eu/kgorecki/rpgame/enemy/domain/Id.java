@@ -2,9 +2,10 @@ package eu.kgorecki.rpgame.enemy.domain;
 
 import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Id {
+public class Id implements Serializable {
     private final int id;
 
     Id(int id) {
