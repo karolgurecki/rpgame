@@ -7,6 +7,7 @@ import eu.kgorecki.rpgame.enemy.EnemyFacade
 import eu.kgorecki.rpgame.enemy.dto.EnemyAttackPower
 import eu.kgorecki.rpgame.enemy.dto.EnemyAttackPowerQuery
 import eu.kgorecki.rpgame.enemy.dto.EnemyId
+import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade
 import eu.kgorecki.rpgame.world.WorldFacade
 import spock.lang.Specification
 
@@ -14,8 +15,8 @@ class EnemyActionAdapterSpec extends Specification {
     def mockedEnemyFacade = Mock(EnemyFacade)
     def mockedCharacterFacade = Mock(CharacterFacade)
     def mockedWorldFacade = Mock(WorldFacade)
-
-    def sut = new EnemyActionAdapter(mockedEnemyFacade, mockedCharacterFacade, mockedWorldFacade)
+    
+    def sut = new EnemyActionAdapter(mockedEnemyFacade, mockedCharacterFacade, mockedWorldFacade, Mock(UserInterfaceFacade))
 
     def "should tell to character to take damage when enemy exists in room"() {
         given:

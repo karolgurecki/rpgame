@@ -22,7 +22,7 @@ public class GameEngineFacadeFactory {
             CommandPortAdapter commandPort = new CommandPortAdapter(UserInterfaceFacadeFactory.createFacade(),
                     CommandFacadeFactory.createFacade());
             EnemyActionAdapter enemyActionPort = new EnemyActionAdapter(EnemyFacadeFactory.createFacade(), CharacterFacadeFactory
-                    .createFacade(), WorldFacadeFactory.createFacade());
+                    .createFacade(), WorldFacadeFactory.createFacade(), UserInterfaceFacadeFactory.createFacade());
             UserInteractionPort userInteractionPort = new UserInteractionAdapter(
                     UserInterfaceFacadeFactory.createFacade());
 

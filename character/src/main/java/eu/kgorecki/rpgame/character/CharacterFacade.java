@@ -13,6 +13,7 @@ import eu.kgorecki.rpgame.character.dto.CharacterStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterStatusQuery;
 import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
 import eu.kgorecki.rpgame.character.dto.EquipItemCommand;
+import eu.kgorecki.rpgame.character.dto.PrintCharacterStatisticsCommand;
 
 import java.util.Optional;
 
@@ -63,5 +64,9 @@ public class CharacterFacade {
 
     public Optional<CharacterAttackPower> findAttackPower(CharacterAttackPowerQuery query) {
         return informationService.findAttackPower(query);
+    }
+
+    public void printStatistics(PrintCharacterStatisticsCommand command) {
+        actionService.printStatistics(command);
     }
 }

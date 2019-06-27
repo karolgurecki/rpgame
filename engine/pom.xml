@@ -71,6 +71,8 @@
                         --add-opens eu.kgorecki.rpgame.character/eu.kgorecki.rpgame.character=ALL-UNNAMED
                         --add-reads eu.kgorecki.rpgame.world=ALL-UNNAMED
                         --add-opens eu.kgorecki.rpgame.world/eu.kgorecki.rpgame.world=ALL-UNNAMED
+                        --add-reads eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.userinterface/eu.kgorecki.rpgame.userinterface=ALL-UNNAMED
                     </argLine>
                 </configuration>
                 <dependencies>

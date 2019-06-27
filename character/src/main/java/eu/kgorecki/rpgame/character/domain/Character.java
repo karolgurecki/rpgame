@@ -96,6 +96,18 @@ public class Character implements Serializable {
         return hitPoints > 0 ? CharacterStatus.ALIVE : CharacterStatus.DEAD;
     }
 
+    Character equipItem(EquipItemCommand command, UserInteractionPort userInteractionPort, ItemsPort itemsPort) {
+        equipment.add(command.getItemId());
+
+        userInteractionPort.displayText("Item equipped");
+        itemsPort.printInformation(command.getItemId());
+        return this;
+    }
+
+    void printStatistics(UserInteractionPort userInteractionPort) {
+        userInteractionPort.displayText(toString());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -118,13 +130,5 @@ public class Character implements Serializable {
                 "\njob = " + job +
                 "\nbase attack power = " + attackModifier +
                 "\nhitPoints = " + hitPoints;
-    }
-
-    Character equipItem(EquipItemCommand command, UserInteractionPort userInteractionPort, ItemsPort itemsPort) {
-        equipment.add(command.getItemId());
-
-        userInteractionPort.displayText("Item equipped");
-        itemsPort.printInformation(command.getItemId());
-        return this;
     }
 }

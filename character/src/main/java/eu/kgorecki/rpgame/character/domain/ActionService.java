@@ -2,6 +2,7 @@ package eu.kgorecki.rpgame.character.domain;
 
 import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
 import eu.kgorecki.rpgame.character.dto.EquipItemCommand;
+import eu.kgorecki.rpgame.character.dto.PrintCharacterStatisticsCommand;
 
 public class ActionService {
     private final RepositoryPort repositoryPort;
@@ -24,5 +25,10 @@ public class ActionService {
         repositoryPort.findById(command.getCharacterId())
                 .map(character -> character.equipItem(command, userInteractionPort, itemsPort))
                 .ifPresent(repositoryPort::save);
+    }
+
+    public void printStatistics(PrintCharacterStatisticsCommand command) {
+        repositoryPort.findById(command.getId())
+                .ifPresent(character -> character.printStatistics(userInteractionPort));
     }
 }
