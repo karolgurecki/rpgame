@@ -12,4 +12,10 @@ public interface CharacterPort {
     void saveState();
 
     boolean isAlive(CharacterId characterId);
+
+    void moveLeft(CharacterId characterId);
+
+    void moveRight(CharacterId characterId);
+
+    void moveAhead(CharacterId characterId);
 }

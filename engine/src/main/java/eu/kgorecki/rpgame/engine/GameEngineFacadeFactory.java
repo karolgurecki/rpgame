@@ -1,6 +1,7 @@
 package eu.kgorecki.rpgame.engine;
 
 import eu.kgorecki.rpgame.character.CharacterFacadeFactory;
+import eu.kgorecki.rpgame.commands.CommandFacadeFactory;
 import eu.kgorecki.rpgame.enemy.EnemyFacadeFactory;
 import eu.kgorecki.rpgame.engine.domain.CommandPort;
 import eu.kgorecki.rpgame.engine.domain.EnemyActionPort;
@@ -16,7 +17,8 @@ public class GameEngineFacadeFactory {
 
     public static GameEngineFacade createFacade() {
         if (instance == null) {
-            CommandPortAdapter commandPort = new CommandPortAdapter(UserInterfaceFacadeFactory.createFacade());
+            CommandPortAdapter commandPort = new CommandPortAdapter(UserInterfaceFacadeFactory.createFacade(),
+                    CommandFacadeFactory.createFacade());
             EnemyActionAdapter enemyActionPort = new EnemyActionAdapter(EnemyFacadeFactory.createFacade(), CharacterFacadeFactory
                     .createFacade(), WorldFacadeFactory.createFacade());
 

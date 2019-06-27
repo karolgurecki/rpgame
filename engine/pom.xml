@@ -32,6 +32,11 @@
             <artifactId>world</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>commands</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Test -->
         <dependency>
