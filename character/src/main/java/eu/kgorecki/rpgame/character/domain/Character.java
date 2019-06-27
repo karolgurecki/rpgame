@@ -119,11 +119,11 @@ public class Character {
                 "\nhitPoints = " + hitPoints;
     }
 
-    Character equipItem(EquipItemCommand command, UserInteractionPort userInteractionPort) {
+    Character equipItem(EquipItemCommand command, UserInteractionPort userInteractionPort, ItemsPort itemsPort) {
         equipment.add(command.getItemId());
 
         userInteractionPort.displayText("Item equipped");
-
+        itemsPort.printInformation(command.getItemId());
         return this;
     }
 }

@@ -22,7 +22,7 @@ public class ActionService {
 
     public void equipItem(EquipItemCommand command) {
         repositoryPort.findById(command.getCharacterId())
-                .map(character -> character.equipItem(command, userInteractionPort))
+                .map(character -> character.equipItem(command, userInteractionPort, itemsPort))
                 .ifPresent(repositoryPort::save);
     }
 }

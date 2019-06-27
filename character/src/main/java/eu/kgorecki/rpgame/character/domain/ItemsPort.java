@@ -8,4 +8,6 @@ public interface ItemsPort {
     Optional<Integer> findAttackPower(ItemId itemId);
 
     Optional<Integer> findDefencePower(ItemId itemId);
+
+    void printInformation(ItemId itemId);
 }
