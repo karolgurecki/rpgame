@@ -29,16 +29,6 @@ public class CharacterAdapter implements CharacterPort {
     }
 
     @Override
-    public void loadState() {
-        characterFacade.loadCharacter();
-    }
-
-    @Override
-    public void saveState() {
-        characterFacade.saveCharacters();
-    }
-
-    @Override
     public boolean isAlive(CharacterId characterId) {
         return characterFacade.findCharacterStatus(new CharacterStatusQuery(characterId))
                 .filter(characterStatus -> characterStatus == CharacterStatus.ALIVE)
@@ -58,7 +48,6 @@ public class CharacterAdapter implements CharacterPort {
     @Override
     public void moveAhead(CharacterId characterId) {
         worldFacade.moveCharacter(MoveCharacterCommand.MOVE_AHEAD);
-
     }
 
     @Override

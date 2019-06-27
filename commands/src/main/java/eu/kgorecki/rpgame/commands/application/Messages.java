@@ -7,6 +7,8 @@ public class Messages {
     public static final String COMMAND_NOT_FOUNT = "I do not know what do with that!";
     public static final String YOU_ARE_ATTACKING = "You are attacking with power = %d";
     public static final String CHARACTER_DO_NOT_CREATED = "Can not character created.";
+    public static final String SAVE_COMPLETE = "Save complete.";
+    public static final String LOAD_COMPLETE = "Load complete.";
 
     private Messages() {
     }

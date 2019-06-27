@@ -33,16 +33,6 @@ public class WorldAdapter implements WorldPort {
     }
 
     @Override
-    public void loadState() {
-        worldFacade.loadState();
-    }
-
-    @Override
-    public void saveState() {
-        worldFacade.saveState();
-    }
-
-    @Override
     public void putCharacterInTheWorld(CharacterId characterId) {
         worldFacade.createTheWorld(new CreateWorldCommand(characterId));
     }

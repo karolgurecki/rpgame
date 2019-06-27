@@ -7,10 +7,6 @@ import java.util.Optional;
 public interface CharacterPort {
     Optional<Integer> findAttackPower(CharacterId characterId);
 
-    void loadState();
-
-    void saveState();
-
     boolean isAlive(CharacterId characterId);
 
     void moveLeft(CharacterId characterId);

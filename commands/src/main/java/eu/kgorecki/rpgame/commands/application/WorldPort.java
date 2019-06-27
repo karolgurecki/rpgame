@@ -13,9 +13,5 @@ public interface WorldPort {
 
     Optional<ItemId> findItemInCurrentRoom();
 
-    void loadState();
-
-    void saveState();
-
     void putCharacterInTheWorld(CharacterId characterId);
 }
