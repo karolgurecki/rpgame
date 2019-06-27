@@ -3,7 +3,14 @@ package eu.kgorecki.rpgame.world
 import eu.kgorecki.rpgame.character.dto.CharacterId
 import eu.kgorecki.rpgame.enemy.dto.EnemyId
 import eu.kgorecki.rpgame.items.dto.ItemId
-import eu.kgorecki.rpgame.world.domain.*
+import eu.kgorecki.rpgame.world.domain.Direction
+import eu.kgorecki.rpgame.world.domain.LoaderPort
+import eu.kgorecki.rpgame.world.domain.RepositoryPort
+import eu.kgorecki.rpgame.world.domain.Room
+import eu.kgorecki.rpgame.world.domain.SaverPort
+import eu.kgorecki.rpgame.world.domain.UserInteractionPort
+import eu.kgorecki.rpgame.world.domain.World
+import eu.kgorecki.rpgame.world.domain.WorldRoomCreatorPort
 import eu.kgorecki.rpgame.world.dto.CreateWorldCommand
 import eu.kgorecki.rpgame.world.dto.MoveCharacterCommand
 import spock.lang.Specification
@@ -23,7 +30,7 @@ class WorldFacadeSpec extends Specification {
             def characterId = CharacterId.of(UUID.randomUUID())
             def command = new CreateWorldCommand(characterId)
 
-            def roomForTest = Room.roomWithEnemy(EnemyId.of(1), Collections.emptyMap())
+            def roomForTest = Room.roomWithEnemy('', EnemyId.of(1), Collections.emptyMap())
             mockedWorldRoomCreatorPort.createRooms() >> roomForTest
 
         when:
@@ -36,7 +43,7 @@ class WorldFacadeSpec extends Specification {
     def "should return optional with CharacterId when character exists in world"() {
         given:
             def characterId = CharacterId.of(UUID.randomUUID())
-            def roomForTest = Room.roomWithEnemy(EnemyId.of(1), Collections.emptyMap())
+            def roomForTest = Room.roomWithEnemy('', EnemyId.of(1), Collections.emptyMap())
 
             mockedRepositoryPort.findWorld() >> Optional.of(new World(characterId, roomForTest))
 
@@ -56,7 +63,7 @@ class WorldFacadeSpec extends Specification {
         given:
             def characterId = CharacterId.of(UUID.randomUUID())
             def enemyId = EnemyId.of(1)
-            def roomForTest = Room.roomWithEnemy(enemyId, Collections.emptyMap())
+            def roomForTest = Room.roomWithEnemy('', enemyId, Collections.emptyMap())
 
             mockedRepositoryPort.findWorld() >> Optional.of(new World(characterId, roomForTest))
 
@@ -68,7 +75,7 @@ class WorldFacadeSpec extends Specification {
         given:
             def characterId = CharacterId.of(UUID.randomUUID())
             def itemId = ItemId.of(1)
-            def roomForTest = Room.roomWithItem(itemId, Collections.emptyMap())
+            def roomForTest = Room.roomWithItem('', itemId, Collections.emptyMap())
 
             mockedRepositoryPort.findWorld() >> Optional.of(new World(characterId, roomForTest))
 
@@ -80,7 +87,7 @@ class WorldFacadeSpec extends Specification {
         given:
             def characterId = CharacterId.of(UUID.randomUUID())
             def itemId = ItemId.of(1)
-            def roomForTest = Room.roomWithItem(itemId, Collections.emptyMap())
+            def roomForTest = Room.roomWithItem('', itemId, Collections.emptyMap())
 
             mockedRepositoryPort.findWorld() >> Optional.of(new World(characterId, roomForTest))
 
@@ -92,7 +99,7 @@ class WorldFacadeSpec extends Specification {
         given:
             def characterId = CharacterId.of(UUID.randomUUID())
             def enemyId = EnemyId.of(1)
-            def roomForTest = Room.roomWithEnemy(enemyId, Collections.emptyMap())
+            def roomForTest = Room.roomWithEnemy('', enemyId, Collections.emptyMap())
 
             mockedRepositoryPort.findWorld() >> Optional.of(new World(characterId, roomForTest))
 
@@ -106,8 +113,8 @@ class WorldFacadeSpec extends Specification {
             def enemyId = EnemyId.of(1)
 
         and: 'build the world'
-            def secondRoom = Room.roomWithEnemy(enemyId, Collections.emptyMap())
-            def startingRoom = Room.roomWithEnemy(enemyId, Map.of(Direction.AHEAD, secondRoom))
+            def secondRoom = Room.roomWithEnemy('', enemyId, Collections.emptyMap())
+            def startingRoom = Room.roomWithEnemy('', enemyId, Map.of(Direction.AHEAD, secondRoom))
 
             mockedRepositoryPort.findWorld() >> Optional.of(new World(characterId, startingRoom))
 
@@ -124,8 +131,8 @@ class WorldFacadeSpec extends Specification {
             def enemyId = EnemyId.of(1)
 
         and: 'build the world'
-            def secondRoom = Room.roomWithEnemy(enemyId, Collections.emptyMap())
-            def startingRoom = Room.roomWithEnemy(enemyId, Map.of(Direction.AHEAD, secondRoom))
+            def secondRoom = Room.roomWithEnemy('', enemyId, Collections.emptyMap())
+            def startingRoom = Room.roomWithEnemy('', enemyId, Map.of(Direction.AHEAD, secondRoom))
 
             mockedRepositoryPort.findWorld() >> Optional.of(new World(characterId, startingRoom))
 
@@ -140,7 +147,7 @@ class WorldFacadeSpec extends Specification {
         given:
             def characterId = CharacterId.of(UUID.randomUUID())
             def enemyId = EnemyId.of(1)
-            def roomForTest = Room.roomWithEnemy(enemyId, Collections.emptyMap())
+            def roomForTest = Room.roomWithEnemy('', enemyId, Collections.emptyMap())
 
             def world = new World(characterId, roomForTest)
             mockedRepositoryPort.findWorld() >> Optional.of(world)
@@ -156,7 +163,7 @@ class WorldFacadeSpec extends Specification {
         given:
             def characterId = CharacterId.of(UUID.randomUUID())
             def enemyId = EnemyId.of(1)
-            def roomForTest = Room.roomWithEnemy(enemyId, Collections.emptyMap())
+            def roomForTest = Room.roomWithEnemy('', enemyId, Collections.emptyMap())
 
             def world = new World(characterId, roomForTest)
             mockedLoaderPort.load() >> Optional.of(world)

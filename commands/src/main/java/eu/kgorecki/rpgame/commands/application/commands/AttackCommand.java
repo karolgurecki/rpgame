@@ -9,6 +9,7 @@ import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
 import eu.kgorecki.rpgame.commands.application.ports.WorldPort;
 import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class AttackCommand implements Command {
@@ -29,15 +30,33 @@ public class AttackCommand implements Command {
 
     @Override
     public void execute() {
-        worldPort.findEnemyInCurrentRoom()
-                .ifPresentOrElse(enemyShouldTakeDamage(), () -> userInteractionPort.displayText(Messages.ENEMY_NOT_EXISTS_IN_CURRENT_ROOM));
+        Optional<EnemyId> enemyInCurrentRoom = worldPort.findEnemyInCurrentRoom();
+
+        if (enemyInCurrentRoom.isEmpty()) {
+            userInteractionPort.displayText(Messages.ENEMY_NOT_EXISTS_IN_CURRENT_ROOM);
+            return;
+        }
+
+        enemyInCurrentRoom
+                .filter(enemyPort::isAlive)
+                .ifPresentOrElse(enemyShouldTakeDamage(),
+                        () -> userInteractionPort.displayText(Messages.ENEMY_IS_DEAD));
     }
 
     private Consumer<EnemyId> enemyShouldTakeDamage() {
-        return enemyId ->
-                worldPort.findCharacterPresentInWorld()
-                        .filter(characterPort::isAlive)
-                        .ifPresentOrElse(characterIdShouldAttack(enemyId), () -> userInteractionPort.displayText(Messages.CHARACTER_NOT_EXISTS));
+        return enemyId -> {
+            Optional<CharacterId> characterPresentInWorld = worldPort.findCharacterPresentInWorld();
+
+            if (characterPresentInWorld.isEmpty()) {
+                userInteractionPort.displayText(Messages.CHARACTER_NOT_EXISTS);
+                return;
+            }
+
+            characterPresentInWorld
+                    .filter(characterPort::isAlive)
+                    .ifPresentOrElse(characterIdShouldAttack(enemyId),
+                            () -> userInteractionPort.displayText(Messages.CHARACTER_IS_DEAD));
+        };
     }
 
     private Consumer<CharacterId> characterIdShouldAttack(EnemyId enemyId) {

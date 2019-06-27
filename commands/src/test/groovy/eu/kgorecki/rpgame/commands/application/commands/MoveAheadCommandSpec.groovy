@@ -1,9 +1,9 @@
 package eu.kgorecki.rpgame.commands.application.commands
 
 import eu.kgorecki.rpgame.character.dto.CharacterId
-import eu.kgorecki.rpgame.commands.ports.CharacterPort
-import eu.kgorecki.rpgame.commands.ports.UserInteractionPort
-import eu.kgorecki.rpgame.commands.ports.WorldPort
+import eu.kgorecki.rpgame.commands.application.ports.CharacterPort
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort
+import eu.kgorecki.rpgame.commands.application.ports.WorldPort
 import spock.lang.Specification
 
 class MoveAheadCommandSpec extends Specification {

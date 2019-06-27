@@ -1,10 +1,10 @@
 package eu.kgorecki.rpgame.commands.application.commands
 
 import eu.kgorecki.rpgame.character.dto.CharacterId
-import eu.kgorecki.rpgame.commands.ports.CharacterPort
-import eu.kgorecki.rpgame.commands.ports.EnemyPort
-import eu.kgorecki.rpgame.commands.ports.UserInteractionPort
-import eu.kgorecki.rpgame.commands.ports.WorldPort
+import eu.kgorecki.rpgame.commands.application.ports.CharacterPort
+import eu.kgorecki.rpgame.commands.application.ports.EnemyPort
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort
+import eu.kgorecki.rpgame.commands.application.ports.WorldPort
 import eu.kgorecki.rpgame.enemy.dto.EnemyId
 import spock.lang.Specification
 
@@ -24,6 +24,7 @@ class AttackCommandSpec extends Specification {
             def attackPower = 2
             
             mockedWorldPort.findEnemyInCurrentRoom() >> Optional.of(enemyId)
+            mockedEnemyPort.isAlive(enemyId) >> true
             mockedWorldPort.findCharacterPresentInWorld() >> Optional.of(characterId)
             
             mockedCharacterPort.isAlive(characterId) >> true
@@ -52,7 +53,23 @@ class AttackCommandSpec extends Specification {
             def enemyId = EnemyId.of(0)
             
             mockedWorldPort.findEnemyInCurrentRoom() >> Optional.of(enemyId)
+            mockedEnemyPort.isAlive(enemyId) >> true
+    
             mockedWorldPort.findCharacterPresentInWorld() >> Optional.empty()
+        
+        when:
+            sut.execute()
+        
+        then:
+            0 * mockedEnemyPort.takeDamage(_ as Integer, _ as EnemyId)
+    }
+    
+    def "should not attack any enemy when enemy in given room is dead"() {
+        given:
+            def enemyId = EnemyId.of(0)
+            
+            mockedWorldPort.findEnemyInCurrentRoom() >> Optional.of(enemyId)
+            mockedEnemyPort.isAlive(enemyId) >> false
         
         when:
             sut.execute()
@@ -67,6 +84,8 @@ class AttackCommandSpec extends Specification {
             def characterId = CharacterId.of(UUID.randomUUID())
             
             mockedWorldPort.findEnemyInCurrentRoom() >> Optional.of(enemyId)
+            mockedEnemyPort.isAlive(enemyId) >> true
+    
             mockedWorldPort.findCharacterPresentInWorld() >> Optional.of(characterId)
             mockedCharacterPort.isAlive(characterId) >> false
         
