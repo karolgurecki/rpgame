@@ -1,4 +1,4 @@
-package eu.kgorecki.rpgame.commands.application;
+package eu.kgorecki.rpgame.commands.application.ports;
 
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 import eu.kgorecki.rpgame.enemy.dto.EnemyId;

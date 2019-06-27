@@ -1,10 +1,10 @@
 package eu.kgorecki.rpgame.commands.application.commands
 
 import eu.kgorecki.rpgame.character.dto.CharacterId
-import eu.kgorecki.rpgame.commands.application.CharacterPort
-import eu.kgorecki.rpgame.commands.application.EnemyPort
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort
-import eu.kgorecki.rpgame.commands.application.WorldPort
+import eu.kgorecki.rpgame.commands.ports.CharacterPort
+import eu.kgorecki.rpgame.commands.ports.EnemyPort
+import eu.kgorecki.rpgame.commands.ports.UserInteractionPort
+import eu.kgorecki.rpgame.commands.ports.WorldPort
 import eu.kgorecki.rpgame.enemy.dto.EnemyId
 import spock.lang.Specification
 

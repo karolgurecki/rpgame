@@ -6,7 +6,7 @@ import eu.kgorecki.rpgame.character.dto.CharacterAttackPowerQuery;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 import eu.kgorecki.rpgame.character.dto.CharacterStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterStatusQuery;
-import eu.kgorecki.rpgame.commands.application.CharacterPort;
+import eu.kgorecki.rpgame.commands.application.ports.CharacterPort;
 import eu.kgorecki.rpgame.world.WorldFacade;
 import eu.kgorecki.rpgame.world.dto.MoveCharacterCommand;
 

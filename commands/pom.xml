@@ -53,6 +53,7 @@
                     <argLine>
                         --add-opens eu.kgorecki.rpgame.commands/eu.kgorecki.rpgame.commands=ALL-UNNAMED
                         --add-opens eu.kgorecki.rpgame.commands/eu.kgorecki.rpgame.commands.application=ALL-UNNAMED
+                        --add-opens eu.kgorecki.rpgame.commands/eu.kgorecki.rpgame.commands.ports=ALL-UNNAMED
                         --add-opens
                         eu.kgorecki.rpgame.commands/eu.kgorecki.rpgame.commands.application.commands=ALL-UNNAMED
                         --add-opens eu.kgorecki.rpgame.commands/eu.kgorecki.rpgame.commands.infrastructure=ALL-UNNAMED

@@ -1,6 +1,6 @@
 package eu.kgorecki.rpgame.commands.infrastructure;
 
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort;
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacade;
 
 public class UserInteractionAdapter implements UserInteractionPort {

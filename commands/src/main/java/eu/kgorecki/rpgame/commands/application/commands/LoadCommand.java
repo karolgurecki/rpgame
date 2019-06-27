@@ -1,9 +1,9 @@
 package eu.kgorecki.rpgame.commands.application.commands;
 
 import eu.kgorecki.rpgame.commands.application.Command;
-import eu.kgorecki.rpgame.commands.application.LoadPort;
 import eu.kgorecki.rpgame.commands.application.Messages;
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort;
+import eu.kgorecki.rpgame.commands.application.ports.LoadPort;
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
 
 public class LoadCommand implements Command {
 

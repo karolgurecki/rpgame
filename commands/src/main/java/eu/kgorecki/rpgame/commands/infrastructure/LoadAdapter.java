@@ -1,7 +1,7 @@
 package eu.kgorecki.rpgame.commands.infrastructure;
 
 import eu.kgorecki.rpgame.character.CharacterFacade;
-import eu.kgorecki.rpgame.commands.application.LoadPort;
+import eu.kgorecki.rpgame.commands.application.ports.LoadPort;
 import eu.kgorecki.rpgame.world.WorldFacade;
 
 public class LoadAdapter implements LoadPort {

@@ -1,12 +1,12 @@
 package eu.kgorecki.rpgame.commands.application.commands;
 
 import eu.kgorecki.rpgame.character.dto.CharacterId;
-import eu.kgorecki.rpgame.commands.application.CharacterPort;
 import eu.kgorecki.rpgame.commands.application.Command;
-import eu.kgorecki.rpgame.commands.application.EnemyPort;
 import eu.kgorecki.rpgame.commands.application.Messages;
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort;
-import eu.kgorecki.rpgame.commands.application.WorldPort;
+import eu.kgorecki.rpgame.commands.application.ports.CharacterPort;
+import eu.kgorecki.rpgame.commands.application.ports.EnemyPort;
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
+import eu.kgorecki.rpgame.commands.application.ports.WorldPort;
 import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 
 import java.util.function.Consumer;

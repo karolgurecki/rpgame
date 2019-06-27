@@ -1,8 +1,8 @@
 package eu.kgorecki.rpgame.commands
 
 import eu.kgorecki.rpgame.commands.application.Command
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort
 import eu.kgorecki.rpgame.commands.dto.ExecuteCommandCommand
+import eu.kgorecki.rpgame.commands.ports.UserInteractionPort
 import spock.lang.Specification
 
 class CommandFacadeSpec extends Specification {

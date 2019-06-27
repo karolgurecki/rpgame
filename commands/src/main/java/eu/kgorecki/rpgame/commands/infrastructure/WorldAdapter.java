@@ -1,7 +1,7 @@
 package eu.kgorecki.rpgame.commands.infrastructure;
 
 import eu.kgorecki.rpgame.character.dto.CharacterId;
-import eu.kgorecki.rpgame.commands.application.WorldPort;
+import eu.kgorecki.rpgame.commands.application.ports.WorldPort;
 import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.world.WorldFacade;

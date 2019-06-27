@@ -2,8 +2,8 @@ package eu.kgorecki.rpgame.commands.application.commands;
 
 import eu.kgorecki.rpgame.commands.application.Command;
 import eu.kgorecki.rpgame.commands.application.Messages;
-import eu.kgorecki.rpgame.commands.application.SavePort;
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort;
+import eu.kgorecki.rpgame.commands.application.ports.SavePort;
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
 
 public class SaveCommand implements Command {
 

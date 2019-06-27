@@ -1,10 +1,10 @@
 package eu.kgorecki.rpgame.commands.application.commands;
 
-import eu.kgorecki.rpgame.commands.application.CharacterPort;
 import eu.kgorecki.rpgame.commands.application.Command;
 import eu.kgorecki.rpgame.commands.application.Messages;
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort;
-import eu.kgorecki.rpgame.commands.application.WorldPort;
+import eu.kgorecki.rpgame.commands.application.ports.CharacterPort;
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
+import eu.kgorecki.rpgame.commands.application.ports.WorldPort;
 
 public class MoveRightCommand implements Command {
     private static final String COMMAND = "move right";

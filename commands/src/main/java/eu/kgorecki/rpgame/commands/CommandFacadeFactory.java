@@ -4,7 +4,7 @@ import eu.kgorecki.rpgame.commands.application.Command;
 import eu.kgorecki.rpgame.commands.application.CommandMapFactory;
 import eu.kgorecki.rpgame.commands.application.CommandResolver;
 import eu.kgorecki.rpgame.commands.application.Service;
-import eu.kgorecki.rpgame.commands.application.UserInteractionPort;
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
 import eu.kgorecki.rpgame.commands.infrastructure.UserInteractionAdapter;
 import eu.kgorecki.rpgame.userinterface.UserInterfaceFacadeFactory;
 

@@ -1,6 +1,6 @@
 package eu.kgorecki.rpgame.commands.infrastructure;
 
-import eu.kgorecki.rpgame.commands.application.EnemyPort;
+import eu.kgorecki.rpgame.commands.application.ports.EnemyPort;
 import eu.kgorecki.rpgame.enemy.EnemyFacade;
 import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.enemy.dto.EnemyTakeDamageCommand;

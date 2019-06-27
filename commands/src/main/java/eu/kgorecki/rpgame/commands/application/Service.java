@@ -1,5 +1,6 @@
 package eu.kgorecki.rpgame.commands.application;
 
+import eu.kgorecki.rpgame.commands.application.ports.UserInteractionPort;
 import eu.kgorecki.rpgame.commands.dto.ExecuteCommandCommand;
 
 public class Service {

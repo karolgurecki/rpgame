@@ -1,7 +1,7 @@
 package eu.kgorecki.rpgame.commands.infrastructure;
 
 import eu.kgorecki.rpgame.character.CharacterFacade;
-import eu.kgorecki.rpgame.commands.application.SavePort;
+import eu.kgorecki.rpgame.commands.application.ports.SavePort;
 import eu.kgorecki.rpgame.world.WorldFacade;
 
 public class SaveAdapter implements SavePort {
