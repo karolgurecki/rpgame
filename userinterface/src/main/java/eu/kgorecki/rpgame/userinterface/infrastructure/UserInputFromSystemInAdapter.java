@@ -7,15 +7,19 @@ import java.util.Scanner;
 public class UserInputFromSystemInAdapter implements UserInputPort {
     @Override
     public String getInputFromUser() {
-        final Scanner scanner = new Scanner(System.in);
-
-        return scanner.nextLine();
+        return getUserInputWithTextInTheSameLine("> ");
     }
 
     @Override
     public String getUserInputWithTextInTheSameLine(String text) {
         System.out.print(text);
 
-        return getInputFromUser();
+        return getInput();
+    }
+
+    private String getInput() {
+        final Scanner scanner = new Scanner(System.in);
+
+        return scanner.nextLine();
     }
 }
