@@ -6,7 +6,9 @@ import eu.kgorecki.rpgame.character.dto.CharacterAttackPowerQuery;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 import eu.kgorecki.rpgame.character.dto.CharacterStatus;
 import eu.kgorecki.rpgame.character.dto.CharacterStatusQuery;
+import eu.kgorecki.rpgame.character.dto.EquipItemCommand;
 import eu.kgorecki.rpgame.commands.application.ports.CharacterPort;
+import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.world.WorldFacade;
 import eu.kgorecki.rpgame.world.dto.MoveCharacterCommand;
 
@@ -55,5 +57,10 @@ public class CharacterAdapter implements CharacterPort {
         characterFacade.createCharacter();
 
         return characterFacade.findLastCreated();
+    }
+
+    @Override
+    public void equipItem(CharacterId character, ItemId item) {
+        characterFacade.equipItem(new EquipItemCommand(character, item));
     }
 }

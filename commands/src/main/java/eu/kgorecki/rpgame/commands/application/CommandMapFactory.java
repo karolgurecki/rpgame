@@ -9,6 +9,7 @@ import eu.kgorecki.rpgame.commands.application.commands.MoveAheadCommand;
 import eu.kgorecki.rpgame.commands.application.commands.MoveLeftCommand;
 import eu.kgorecki.rpgame.commands.application.commands.MoveRightCommand;
 import eu.kgorecki.rpgame.commands.application.commands.SaveCommand;
+import eu.kgorecki.rpgame.commands.application.commands.TakeItemCommand;
 import eu.kgorecki.rpgame.commands.application.ports.CharacterPort;
 import eu.kgorecki.rpgame.commands.application.ports.EnemyPort;
 import eu.kgorecki.rpgame.commands.application.ports.ExitPort;
@@ -54,7 +55,8 @@ public class CommandMapFactory {
             new CreateCharacterCommand(WORLD_PORT, CHARACTER_PORT, USER_INTERACTION_PORT),
             new SaveCommand(SAVE_PORT, USER_INTERACTION_PORT),
             new LoadCommand(LOAD_PORT, USER_INTERACTION_PORT),
-            new ExitCommand(EXIT_PORT)
+            new ExitCommand(EXIT_PORT),
+            new TakeItemCommand(CHARACTER_PORT, WORLD_PORT, USER_INTERACTION_PORT)
     );
 
     private static Map<String, Command> commandMapInstance;

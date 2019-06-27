@@ -11,6 +11,7 @@ public class Messages {
     public static final String CHARACTER_DO_NOT_CREATED = "Can not character created.";
     public static final String SAVE_COMPLETE = "Save complete.";
     public static final String LOAD_COMPLETE = "Load complete.";
+    public static final String ITEM_NOT_EXISTS = "In current room not contain any items";
 
     private Messages() {
     }
