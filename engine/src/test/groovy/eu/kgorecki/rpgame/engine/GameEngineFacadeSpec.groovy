@@ -2,6 +2,7 @@ package eu.kgorecki.rpgame.engine
 
 import eu.kgorecki.rpgame.engine.domain.CommandPort
 import eu.kgorecki.rpgame.engine.domain.EnemyActionPort
+import eu.kgorecki.rpgame.engine.domain.UserInteractionPort
 import spock.lang.Specification
 
 class GameEngineFacadeSpec extends Specification {
@@ -12,7 +13,7 @@ class GameEngineFacadeSpec extends Specification {
             def mockedEnemyActionPort = Mock(EnemyActionPort)
         
         and: 'create tested facade instance'
-            def sut = GameEngineFacadeFactory.createFacade(mockedCommandPort, mockedEnemyActionPort)
+            def sut = GameEngineFacadeFactory.createFacade(mockedCommandPort, mockedEnemyActionPort, Mock(UserInteractionPort))
         
         and: 'prepare test command'
             def command = 'anyCommand'
