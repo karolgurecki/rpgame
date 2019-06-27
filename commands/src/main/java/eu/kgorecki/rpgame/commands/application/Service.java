@@ -4,14 +4,17 @@ import eu.kgorecki.rpgame.commands.dto.ExecuteCommandCommand;
 
 public class Service {
     private final CommandResolver commandResolver;
+    private final UserInteractionPort userInteractionPort;
 
-    public Service(CommandResolver commandResolver) {
+    public Service(CommandResolver commandResolver, UserInteractionPort userInteractionPort) {
         this.commandResolver = commandResolver;
+        this.userInteractionPort = userInteractionPort;
     }
 
 
     public void execute(ExecuteCommandCommand executeCommand) {
         commandResolver.resolve(executeCommand)
-                .ifPresent(Command::execute);
+                .ifPresentOrElse(Command::execute,
+                        () -> userInteractionPort.displayText(Messages.COMMAND_NOT_FOUNT));
     }
 }

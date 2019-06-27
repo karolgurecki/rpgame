@@ -6,13 +6,14 @@ import java.util.Map;
 import java.util.Optional;
 
 public class CommandResolver {
-    private final Map<String,Command> commands;
+    private final Map<String, Command> commands;
 
     public CommandResolver(Map<String, Command> commands) {
         this.commands = commands;
     }
 
-    Optional<Command> resolve(ExecuteCommandCommand executeCommand){
+
+    Optional<Command> resolve(ExecuteCommandCommand executeCommand) {
         String upperCaseCommand = executeCommand.getCommand().toUpperCase();
 
         return Optional.ofNullable(commands.get(upperCaseCommand));
