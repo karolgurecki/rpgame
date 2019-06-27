@@ -18,4 +18,6 @@ public interface CharacterPort {
     void moveRight(CharacterId characterId);
 
     void moveAhead(CharacterId characterId);
+
+    Optional<CharacterId> create();
 }

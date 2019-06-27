@@ -2,6 +2,7 @@ package eu.kgorecki.rpgame.commands.application;
 
 import eu.kgorecki.rpgame.character.CharacterFacadeFactory;
 import eu.kgorecki.rpgame.commands.application.commands.AttackCommand;
+import eu.kgorecki.rpgame.commands.application.commands.CreateCharacterCommand;
 import eu.kgorecki.rpgame.commands.application.commands.MoveAheadCommand;
 import eu.kgorecki.rpgame.commands.application.commands.MoveLeftCommand;
 import eu.kgorecki.rpgame.commands.application.commands.MoveRightCommand;
@@ -31,7 +32,8 @@ public class CommandMapFactory {
             new AttackCommand(ENEMY_PORT, CHARACTER_PORT, WORLD_PORT, USER_INTERACTION_PORT),
             new MoveLeftCommand(CHARACTER_PORT, WORLD_PORT, USER_INTERACTION_PORT),
             new MoveRightCommand(CHARACTER_PORT, WORLD_PORT, USER_INTERACTION_PORT),
-            new MoveAheadCommand(CHARACTER_PORT, WORLD_PORT, USER_INTERACTION_PORT)
+            new MoveAheadCommand(CHARACTER_PORT, WORLD_PORT, USER_INTERACTION_PORT),
+            new CreateCharacterCommand(WORLD_PORT, CHARACTER_PORT, USER_INTERACTION_PORT)
     );
 
     private CommandMapFactory() {

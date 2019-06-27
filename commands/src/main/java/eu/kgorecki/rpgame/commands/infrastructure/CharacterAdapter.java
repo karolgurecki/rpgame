@@ -60,4 +60,11 @@ public class CharacterAdapter implements CharacterPort {
         worldFacade.moveCharacter(MoveCharacterCommand.MOVE_AHEAD);
 
     }
+
+    @Override
+    public Optional<CharacterId> create() {
+        characterFacade.createCharacter();
+
+        return characterFacade.findLastCreated();
+    }
 }

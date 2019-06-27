@@ -16,4 +16,6 @@ public interface WorldPort {
     void loadState();
 
     void saveState();
+
+    void putCharacterInTheWorld(CharacterId characterId);
 }

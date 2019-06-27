@@ -5,6 +5,7 @@ import eu.kgorecki.rpgame.commands.application.WorldPort;
 import eu.kgorecki.rpgame.enemy.dto.EnemyId;
 import eu.kgorecki.rpgame.items.dto.ItemId;
 import eu.kgorecki.rpgame.world.WorldFacade;
+import eu.kgorecki.rpgame.world.dto.CreateWorldCommand;
 
 import java.util.Optional;
 
@@ -39,5 +40,10 @@ public class WorldAdapter implements WorldPort {
     @Override
     public void saveState() {
         worldFacade.saveState();
+    }
+
+    @Override
+    public void putCharacterInTheWorld(CharacterId characterId) {
+        worldFacade.createTheWorld(new CreateWorldCommand(characterId));
     }
 }
