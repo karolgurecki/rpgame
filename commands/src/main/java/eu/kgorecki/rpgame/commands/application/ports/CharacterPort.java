@@ -19,4 +19,6 @@ public interface CharacterPort {
     Optional<CharacterId> create();
 
     void equipItem(CharacterId character, ItemId item);
+
+    void gainExperience(CharacterId characterId, int experiencePoints);
 }

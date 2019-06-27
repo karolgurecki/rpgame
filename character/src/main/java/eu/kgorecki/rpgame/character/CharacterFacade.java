@@ -5,6 +5,7 @@ import eu.kgorecki.rpgame.character.domain.CreationService;
 import eu.kgorecki.rpgame.character.domain.InformationService;
 import eu.kgorecki.rpgame.character.domain.LoadService;
 import eu.kgorecki.rpgame.character.domain.SaveService;
+import eu.kgorecki.rpgame.character.dto.AddExperienceCommand;
 import eu.kgorecki.rpgame.character.dto.CharacterAttackPower;
 import eu.kgorecki.rpgame.character.dto.CharacterAttackPowerQuery;
 import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus;
@@ -68,5 +69,9 @@ public class CharacterFacade {
 
     public void printStatistics(PrintCharacterStatisticsCommand command) {
         actionService.printStatistics(command);
+    }
+
+    public void addExpirance(AddExperienceCommand command) {
+        actionService.addExpirance(command);
     }
 }

@@ -1,5 +1,6 @@
 package eu.kgorecki.rpgame.character.domain;
 
+import eu.kgorecki.rpgame.character.dto.AddExperienceCommand;
 import eu.kgorecki.rpgame.character.dto.CharacterAttackPower;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
 import eu.kgorecki.rpgame.character.dto.CharacterStatus;
@@ -23,6 +24,7 @@ public class Character implements Serializable {
     private final int attackModifier;
     private final int hitPoints;
     private final Set<ItemId> equipment;
+    private final Integer experience;
 
     public Character(String name, String sex, String skinColor, String job) {
         this.id = Id.generateId();
@@ -33,9 +35,10 @@ public class Character implements Serializable {
         this.equipment = new HashSet<>();
         this.attackModifier = new Random().nextInt(4);
         this.hitPoints = 10;
+        this.experience = 0;
     }
 
-    public Character(Id id, String name, String sex, String skinColor, String job, int attackModifier, int hitPoints, Set<ItemId> equipment) {
+    public Character(Id id, String name, String sex, String skinColor, String job, int attackModifier, int hitPoints, Set<ItemId> equipment, Integer experience) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -44,6 +47,7 @@ public class Character implements Serializable {
         this.attackModifier = attackModifier;
         this.hitPoints = hitPoints;
         this.equipment = equipment;
+        this.experience = experience;
     }
 
     static Character createCharacter(UserInteractionPort userInterfaceFacade) {
@@ -85,7 +89,7 @@ public class Character implements Serializable {
 
         int newHitPoints = hitPoints - actualEnemyAttackPower;
 
-        return new Character(id, name, sex, skinColor, job, attackModifier, newHitPoints, equipment);
+        return new Character(id, name, sex, skinColor, job, attackModifier, newHitPoints, equipment, experience);
     }
 
     private int getActualEnemyAttackPower(int defencePowerFromItemInEquipment, int attackPower) {
@@ -106,6 +110,14 @@ public class Character implements Serializable {
 
     void printStatistics(UserInteractionPort userInteractionPort) {
         userInteractionPort.displayText(toString());
+    }
+
+    Character addExperiencePoint(AddExperienceCommand command, UserInteractionPort userInteractionPort) {
+        userInteractionPort.displayText("Experience gain: " + command.getExperiencePoints());
+
+        int newExperience = this.experience + command.getExperiencePoints();
+
+        return new Character(id, name, sex, skinColor, job, attackModifier, hitPoints, equipment, newExperience);
     }
 
     @Override
@@ -129,6 +141,7 @@ public class Character implements Serializable {
                 "\nskinColor = " + skinColor +
                 "\njob = " + job +
                 "\nbase attack power = " + attackModifier +
-                "\nhitPoints = " + hitPoints;
+                "\nhitPoints = " + hitPoints +
+                "\nexperience" + experience;
     }
 }

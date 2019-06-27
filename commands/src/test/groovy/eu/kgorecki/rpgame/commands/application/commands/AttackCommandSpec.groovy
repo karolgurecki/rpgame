@@ -37,6 +37,26 @@ class AttackCommandSpec extends Specification {
             1 * mockedEnemyPort.takeDamage(attackPower, enemyId)
     }
     
+    def "character should gain experience when he attacks an enemy"() {
+        given:
+            def enemyId = EnemyId.of(0)
+            def characterId = CharacterId.of(UUID.randomUUID())
+            def attackPower = 2
+            
+            mockedWorldPort.findEnemyInCurrentRoom() >> Optional.of(enemyId)
+            mockedEnemyPort.isAlive(enemyId) >> true
+            mockedWorldPort.findCharacterPresentInWorld() >> Optional.of(characterId)
+            
+            mockedCharacterPort.isAlive(characterId) >> true
+            mockedCharacterPort.findAttackPower(characterId) >> Optional.of(attackPower)
+        
+        when:
+            sut.execute()
+        
+        then:
+            1 * mockedCharacterPort.gainExperience(characterId, _ as Integer)
+    }
+    
     def "should not attack any enemy when not exists in current room"() {
         given:
             mockedWorldPort.findEnemyInCurrentRoom() >> Optional.empty()

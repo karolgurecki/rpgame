@@ -65,6 +65,8 @@ public class AttackCommand implements Command {
                         .ifPresent(attackPower -> {
                             userInteractionPort.displayText(String.format(Messages.YOU_ARE_ATTACKING, attackPower));
                             enemyPort.takeDamage(attackPower, enemyId);
+
+                            characterPort.gainExperience(characterId, 2);
                             enemyPort.printStatus(enemyId);
                         });
     }

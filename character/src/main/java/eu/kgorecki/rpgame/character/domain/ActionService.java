@@ -1,5 +1,6 @@
 package eu.kgorecki.rpgame.character.domain;
 
+import eu.kgorecki.rpgame.character.dto.AddExperienceCommand;
 import eu.kgorecki.rpgame.character.dto.CharacterTakeDamageCommand;
 import eu.kgorecki.rpgame.character.dto.EquipItemCommand;
 import eu.kgorecki.rpgame.character.dto.PrintCharacterStatisticsCommand;
@@ -30,5 +31,11 @@ public class ActionService {
     public void printStatistics(PrintCharacterStatisticsCommand command) {
         repositoryPort.findById(command.getId())
                 .ifPresent(character -> character.printStatistics(userInteractionPort));
+    }
+
+    public void addExpirance(AddExperienceCommand command) {
+        repositoryPort.findById(command.getId())
+                .map(character -> character.addExperiencePoint(command, userInteractionPort))
+                .ifPresent(repositoryPort::save);
     }
 }

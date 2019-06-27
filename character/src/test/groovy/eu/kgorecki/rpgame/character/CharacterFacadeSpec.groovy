@@ -9,6 +9,7 @@ import eu.kgorecki.rpgame.character.domain.RepositoryPort
 import eu.kgorecki.rpgame.character.domain.SavePort
 import eu.kgorecki.rpgame.character.domain.UserInteractionPort
 import eu.kgorecki.rpgame.character.domain.UserMassages
+import eu.kgorecki.rpgame.character.dto.AddExperienceCommand
 import eu.kgorecki.rpgame.character.dto.CharacterAttackPower
 import eu.kgorecki.rpgame.character.dto.CharacterAttackPowerQuery
 import eu.kgorecki.rpgame.character.dto.CharacterCreationStatus
@@ -130,7 +131,7 @@ class CharacterFacadeSpec extends Specification {
 
     def "should return character status as alive when hit point > 0"() {
         given:
-            def dut = new Character(Id.generateId(), 'test', 'test', '', '', 2, 2, Collections.emptySet())
+            def dut = new Character(Id.generateId(), 'test', 'test', '', '', 2, 2, Collections.emptySet(), 0)
 
             repositoryAdapter.save dut
 
@@ -140,7 +141,7 @@ class CharacterFacadeSpec extends Specification {
 
     def "should return character status as dead when hit point > 0"() {
         given:
-            def dut = new Character(Id.generateId(), 'test', 'test', '', '', 2, 0, Collections.emptySet())
+            def dut = new Character(Id.generateId(), 'test', 'test', '', '', 2, 0, Collections.emptySet(), 0)
 
             repositoryAdapter.save dut
         expect:
@@ -150,7 +151,7 @@ class CharacterFacadeSpec extends Specification {
     def "should return character attack power"() {
         given:
             def attackPower = 2
-            def dut = new Character(Id.generateId(), 'test', 'test', '', '', attackPower, 0, Collections.emptySet())
+            def dut = new Character(Id.generateId(), 'test', 'test', '', '', attackPower, 0, Collections.emptySet(), 0)
 
             repositoryAdapter.save dut
         expect:
@@ -170,6 +171,20 @@ class CharacterFacadeSpec extends Specification {
         
         then:
             repositoryAdapter.character.equipment.contains(itemToEquip)
+    }
+    
+    def "should gain experience"() {
+        given:
+            def dut = new Character('test', 'test', '', '')
+            
+            repositoryAdapter.save dut
+            
+            def experiencePoints = 3
+        when:
+            sut.addExpirance(new AddExperienceCommand(dut.getIdAsCharacterId(), experiencePoints))
+        
+        then:
+            repositoryAdapter.character.experience == dut.experience + experiencePoints
     }
     
     class SingleCharacterRepositoryAdapterForTests implements RepositoryPort {

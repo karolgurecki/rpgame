@@ -1,6 +1,7 @@
 package eu.kgorecki.rpgame.commands.infrastructure;
 
 import eu.kgorecki.rpgame.character.CharacterFacade;
+import eu.kgorecki.rpgame.character.dto.AddExperienceCommand;
 import eu.kgorecki.rpgame.character.dto.CharacterAttackPower;
 import eu.kgorecki.rpgame.character.dto.CharacterAttackPowerQuery;
 import eu.kgorecki.rpgame.character.dto.CharacterId;
@@ -62,5 +63,10 @@ public class CharacterAdapter implements CharacterPort {
     @Override
     public void equipItem(CharacterId character, ItemId item) {
         characterFacade.equipItem(new EquipItemCommand(character, item));
+    }
+
+    @Override
+    public void gainExperience(CharacterId characterId, int experiencePoints) {
+        characterFacade.addExpirance(new AddExperienceCommand(characterId, experiencePoints));
     }
 }
