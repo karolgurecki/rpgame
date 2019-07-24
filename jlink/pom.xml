@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>rpgame</artifactId>
+        <groupId>eu.kgorecki</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jlink</packaging>
+    <artifactId>jlink</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>eu.kgorecki</groupId>
+            <artifactId>runner</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-jlink-plugin</artifactId>
+                <version>3.0.0-alpha-1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <addModules>
+                        <addModule>eu.kgorecki.rpgame.engine</addModule>
+                        <addModule>eu.kgorecki.rpgame.character</addModule>
+                        <addModule>eu.kgorecki.rpgame.commands</addModule>
+                        <addModule>eu.kgorecki.rpgame.enemy</addModule>
+                        <addModule>eu.kgorecki.rpgame.userinterface</addModule>
+                        <addModule>eu.kgorecki.rpgame.world</addModule>
+                        <addModule>eu.kgorecki.rpgame.items</addModule>
+                        <addModule>eu.kgorecki.rpgame.savestale</addModule>
+                    </addModules>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>7.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

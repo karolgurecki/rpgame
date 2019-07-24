@@ -18,6 +18,7 @@
         <module>world</module>
         <module>runner</module>
         <module>commands</module>
+        <module>jlink</module>
     </modules>
 
     <properties>
