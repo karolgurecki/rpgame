@@ -13,4 +13,5 @@ When you built this project, you can run the game using command line (from main 
 * on Windows `"%JAVA_HOME%\bin\java" -jar runner\target\eu.kgorecki.rpgame.jar` 
 * on Unix `"$JAVA_HOME\bin\java" -jar runner\target\eu.kgorecki.rpgame.jar`
 
-tezsat 
+tezsat
+hh 
